@@ -1,119 +1,143 @@
-#include<IE.au3>
+#includ	e<IE.au3>
 #include <Misc.au3>
 #RequireAdmin
 
 HotKeySet("{END}" , "close")
-HotKeySet("{HOME}", "setfix")
-HotKeySet("{F10}", "thunder")
+HotKeySet("{HOME}", "startScript")
+HotKeySet("{INS}", "setPause")
+HotKeySet("{F10}", "test")
 Dim $click = False
-Dim $fix = False
 Dim $count = 0
 Dim $looptime = 20
+Dim $pause = False
 
 Dim $carnageButton = "6"
-Dim $holysymbolbutton = "r"
+Dim $HSButton = "r"
 Dim $domainButton = "d"
+Dim $attackButton = "a"
+Dim $adrenalineButton = "w"
+Dim $finalBlowButton = "8"
+Dim $buffButton = "q"
+Dim $jumpButton = "{space}"
+Dim $fjButton = "{LShift}"
+Dim $BBButton = "s"
 
-$dll = DllOpen("user32.dll")
+Dim $hsRow = 1
+Dim $hsCol = 7
+Dim $carnageRow = 0
+Dim $carnageCol = 5
+Dim $domainRow = 1
+Dim $domainCol = 1
+Dim $adrenalinecol = 5
+Dim $adrenalinerow = 0
 
-Func carnage()
-   Send($carnageButton)
-   	  sleep(100)
+consolewrite("script activated" & @LF)
+
+func test()
+   swipe(200)
+   carnage()
 EndFunc
+
 Func close()
-    Exit
+   send("{left up}")
+   send("{right up}")
+   send("{up up}")
+   send("{down up}")
+   Exit
+ EndFunc
+
+Func setPause()
+   $pause = NOT $pause
+   While $pause
+	  sleep(100)
+   Wend
 EndFunc
 
-Func Thunder()
+While 1
+	  If $click = True Then
+		 If isoffCD($hscol, $hsrow) Then
+			buff()
+			Send($HSButton)
+			Sleep(900)
+		 EndIf
+
+		 If isoffcd($adrenalinecol, $adrenalinerow) Then
+			Send($adrenalineButton)
+			Sleep(300)
+		 EndIf
+		 rev2()
+		 $count += 1
+      EndIf
+   WEnd
+
+Func thunder()
    moveright(100)
-   Swipe()
+   combo(250)
    slide()
-   dash()
-
-   swipe()
+   fj()
+   combo(250)
    slide()
-   dash()
-
-   swipe()
-   dash()
-
-   swipe()
-   slide()
-   dash()
-
-   swipe()
-   dash()
+   fj()
+   If isOffCD($carnageCol, $carnageRow) Then
+	  carnage(300)
+   Else
+	  combo()
+   EndIf
 
    moveleft(100)
-   swipe()
+   combo(250)
    slide()
-   dash()
+   fj()
+   combo(250)
+   slide()
+   fj()
 
-   swipe()
-   slide()
 
-   swipe()
-   slide()
-
-   swipe()
-   slide()
-
-   swipe()
-   slide()
-
-   swipe()
-   slide()
-   dash()
+   If isOffCD($domainCol, $domainRow) Then
+	  domain()
+   Else
+	  combo()
+   EndIf
 EndFunc
 
-Func setfix()
-   $fix = True
+Func startscript()
+   $click = True
 EndFunc
 
-Func superCombo()
-   Send("{8}")
-   Send("{s}")
-   sleep(900)
-   slide()
+Func domain()
+   Send($domainButton)
+   sleep(1300)
+EndFunc
 
-   Send("{s}")
+Func carnage($sleeptime = 0)
+   Send($carnageButton)
    sleep(400)
-   Send("{s}")
-   sleep(550)
-   slide()
-   sleep(100)
-
-   Send("{s}")
-   sleep(500)
-   slide()
+   sleep($sleeptime)
 EndFunc
 
-Func swipe()
+Func swipe($sleeptime = 0)
    Send("{down down}")
-   Send("a")
-   sleep(100)
+   Send($attackButton)
    send("{down up}")
    ;sleep(Random(10, 40, 1))
-   sleep(250)
-   Send("s")
-   sleep(550)
+   sleep(450 + $sleeptime)
 EndFunc
 
-Func dash()
+Func fj()
    Send("{SPACE}")
    Sleep(100)
-   Send("{LSHIFT}")
+   Send($fjButton)
    Sleep(700)
 EndFunc
 
 Func slide()
-   Send("{LSHIFT}")
+   Send($fjButton)
    Sleep(250)
 EndFunc
 
 Func buff()
-   Send("q")
-   Sleep(2300)
+   Send($buffButton)
+   Sleep(2000)
 EndFunc
 
 Func moveLeft($distance)
@@ -122,52 +146,74 @@ Func moveLeft($distance)
    Send("{LEFT up}")
 EndFunc
 
-
 Func moveRight($distance)
    Send("{RIGHT down}")
    Sleep($distance)
    Send("{RIGHT up}")
 EndFunc
 
-Func Rev2A()
+Func dropdown()
+   Send("{DOWN down}")
+   Send($jumpbutton)
+   Sleep(500)
+   Send("{DOWN up}")
+EndFunc
+
+Func combo($sleepTime = 0)
+   Swipe()
+   For $i = 4 To 1 Step -1
+	  Send($BBButton)
+	  Sleep(350)
+   Next
+   sleep($sleeptime)
+EndFunc
+
+Func isOffCD($col, $row)
+   Local $cdSkillColor = 000000
+   Local $skillIconWidth = 35
+   Local $toprow = 1031
+   Local $firstColumn = 1574
+
+   local $cdColor = PixelGetColor($firstcolumn + ($col * $skilliconwidth), $toprow + ($row * $skilliconWidth))
+   Return $cdColor <> $cdskillcolor
+EndFunc
+
+;
+;legacy maps below
+;
+Func Rev2()
    moveleft(100)
-   swipe()
+   swipe(250)
    slide()
-   dash()
+   fj()
 
    For $i = 4 To 1 Step -1
-	  swipe()
+	  swipe(250)
 	  slide()
    Next
 
-   dash()
+   fj()
+   dropdown()
 
-   Send("{DOWN down}")
-   Send("{SPACE}")
-   Sleep(500)
-   Send("{DOWN up}")
    moveRight(100)
    slide()
 
    For $i = 2 To 1 Step -1
-	  swipe()
+	  swipe(250)
 	  slide()
    Next
 
-   If  Mod ($count, Ceiling(150/$looptime)) = 0 Then
-	  Send($domainButton)
-	  Sleep(1300)
-   Else
-	  swipe()
-	  sleep(1100)
-	  Carnage()
+   If isoffcd($domaincol, $domainrow) Then
+	  domain()
+   ElseIf isOffcd($carnagecol, $carnagerow) Then
+	  Carnage(300)
     EndIf
 
    For $i = 4 To 1 Step -1
-	  swipe()
+	  swipe(250)
 	  slide()
    Next
-   dash()
+   fj()
 
    moveLeft(50)
    slide()
@@ -176,54 +222,6 @@ Func Rev2A()
 	  Sleep(75)
    Next
    ;$click = False
-EndFunc
-
-Func fixRev()
-   moveRight(50)
-   slide()
-   dash()
-   moveLeft(50)
-   slide()
-   For $i = 3 To 1 Step -1
-	  Send("{up}")
-	  Sleep(75)
-   Next
-   $fix = False
-   $click = True
-EndFunc
-
-While 1
-	  If $click = True Then
-
-		 If  Mod($count, Ceiling(180/$looptime)) = 0 Then
-			moveLeft(50)
-			buff()
-			Send($HolySymbolButton)
-			Sleep(900)
-		 EndIf
-
-		 If Mod($count, Ceiling(240/$looptime)) = 2 Then
-			Send("{w}")
-			Sleep(300)
-		 EndIf
-		 rev2A()
-		 $count += 1
-      EndIf
-	  If $fix = True Then
-		 fixRev()
-	  EndIf
-WEnd
-
-Func combo()
-   ;Send("{DOWN down}")
-   Send("{8}")
-   ;Send("{DOWN up}")
-   ;Sleep(100)
-   For $i = 5 To 1 Step -1
-	  Send("{s}")
-	  Sleep(300)
-   Next
-   Sleep(600)
 EndFunc
 
 Func bittyBobble()

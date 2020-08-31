@@ -13,11 +13,6 @@ Dim $pause = False
 Dim $leftdown = False
 Dim $rightdown = True
 
-Dim $cdSkillColor = 000000
-Dim $skillIconWidth = 35
-Dim $toprow = 1031
-Dim $firstColumn = 1574
-
 Dim $yukiRow = 0
 Dim $yukiCol = 0
 Dim $domainRow = 1
@@ -312,6 +307,11 @@ Func dropdown()
 EndFunc
 
 Func isOffCD($col, $row)
+   Local $cdSkillColor = 000000
+   Local $skillIconWidth = 35
+   Local $toprow = 1031
+   Local $firstColumn = 1574
+
    local $cdColor = PixelGetColor($firstcolumn + ($col * $skilliconwidth), $toprow + ($row * $skilliconWidth))
    Return $cdColor <> $cdskillcolor
 EndFunc
