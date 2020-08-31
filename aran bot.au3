@@ -10,6 +10,7 @@ Dim $click = False
 Dim $count = 0
 Dim $looptime = 20
 Dim $pause = False
+Dim $totem = False
 
 Dim $carnageButton = "6"
 Dim $HSButton = "r"
@@ -21,6 +22,9 @@ Dim $buffButton = "q"
 Dim $jumpButton = "{space}"
 Dim $fjButton = "{LShift}"
 Dim $BBButton = "s"
+Dim $totemButton = "9"
+Dim $furyButton = "f"
+Dim $showerbutton = "e"
 
 Dim $hsRow = 1
 Dim $hsCol = 7
@@ -30,12 +34,16 @@ Dim $domainRow = 1
 Dim $domainCol = 1
 Dim $adrenalinecol = 5
 Dim $adrenalinerow = 0
-
+Dim $furycol = 3
+Dim $furyRow = 1
+Dim $showercol = 6
+Dim $showerRow = 1
 consolewrite("script activated" & @LF)
 
 func test()
-   swipe(200)
-   carnage()
+   send($totemButton)
+   sleep(400)
+   swipe()
 EndFunc
 
 Func close()
@@ -55,6 +63,7 @@ EndFunc
 
 While 1
 	  If $click = True Then
+		 moveleft(200)
 		 If isoffCD($hscol, $hsrow) Then
 			buff()
 			Send($HSButton)
@@ -64,6 +73,20 @@ While 1
 		 If isoffcd($adrenalinecol, $adrenalinerow) Then
 			Send($adrenalineButton)
 			Sleep(300)
+		 ElseIf isoffcd($furycol, $furyrow) Then
+			   send($furybutton)
+			   sleep(500)
+		 EndIf
+
+		 If $totem Then
+			send($totemButton)
+			sleep(100)
+			Send($totemButton)
+			sleep(100)
+			send($totemButton)
+			sleep(100)
+			Send($totemButton)
+			sleep(100)
 		 EndIf
 		 rev2()
 		 $count += 1
@@ -132,7 +155,9 @@ EndFunc
 
 Func slide()
    Send($fjButton)
-   Sleep(250)
+   Sleep(100)
+   Send($fjButton)
+   sleep(150)
 EndFunc
 
 Func buff()
@@ -207,7 +232,10 @@ Func Rev2()
 	  domain()
    ElseIf isOffcd($carnagecol, $carnagerow) Then
 	  Carnage(300)
-    EndIf
+   ElseIf isoffcd($showercol, $showerrow) Then
+	  send($showerbutton)
+	  sleep(500)
+   EndIf
 
    For $i = 4 To 1 Step -1
 	  swipe(250)
