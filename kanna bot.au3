@@ -240,7 +240,7 @@ Func dcup2()
 	  dcup2setup()
 	  $start = False
    EndIf
-   For $i = 3 To 1 Step -1
+   For $i = 2 To 1 Step -1
 	  dcup2Combo("yaksha")
 	  For $j = 4 To 1 Step -1
 		 dcup2Combo()
