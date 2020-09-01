@@ -6,7 +6,9 @@ HotKeySet("{END}" , "close")
 HotKeySet("{HOME}", "startScript")
 HotKeySet("{INS}", "setPause")
 HotKeySet("{DEL}", "ccChickens")
+HotKeySet("g", "dcup2")
 Dim $click = False
+Dim $start = False
 Dim $count = 0
 Dim $looptime = 30
 Dim $pause = False
@@ -31,6 +33,8 @@ Dim $yakshaRow = 0
 Dim $yakshaCol = 1
 Dim $kishRow = 0
 Dim $kishcol = 2
+Dim $tenguRow = 1
+Dim $tenguCol = 0
 
 Dim $shikigamiButton = "s"
 Dim $yakshaButton = "w"
@@ -48,9 +52,66 @@ Dim $vanquisherButton = "x"
 Dim $sharpEyesButton = "7"
 Dim $balanceButton = "{F10}"
 Dim $ccButton = ","
+Dim $tenguButton = "a"
 ;$dll = DllOpen("user32.dll")
 
 consolewrite("script activated" & @LF)
+Func dcup2Setup()
+   For $i = 3 To 1 Step -1
+	  teleport("right")
+	  sleep(200)
+   Next
+   teleport("down")
+   kish()
+   teleport("up")
+   For $i = 3 To 1 Step -1
+   	  teleport("left")
+	  sleep(200)
+   Next
+EndFunc
+
+Func dcup2Combo($yaksha = False)
+   tengu()
+   dropdown(200)
+   dropdown(800)
+   attack()
+   dropdown()
+   teleport("down")
+   sleep(200)
+   attack()
+   if $yaksha Then
+	  teleport("left")
+	  sleep(600)
+	  teleport("left")
+	  yaksha()
+   EndIf
+   dropdown(400)
+EndFunc
+
+Func dcup2collect()
+   For $i = 3 To 1 Step -1
+	  teleport("left")
+	  sleep(400)
+   Next
+   yaksha()
+   For $i = 3 To 1 Step -1
+	  teleport("left")
+	  sleep(400)
+   Next
+   kish()
+   For $i = 2 To 1 Step -1
+	  teleport("left")
+	  sleep(400)
+   Next
+   tengu()
+   dropdown(400)
+
+   For $i = 11 To 1 Step -1
+	  teleport("left")
+	  sleep(400)
+   Next
+EndFunc
+
 Func ccChickens()
    $redPixel = PixelSearch(0, 0, 200, 120, 0xFF0000, 10)
    While Not @error
@@ -72,34 +133,33 @@ Func setPause()
 EndFunc
 
 While 1
-	  If $click = True Then
-		 If isOffCD($hscol, $hsRow) Then
-			;ConsoleWrite("hs color: " & $hscd)
-			ConsoleWrite("hs triggered" & @LF)
-			Send($hakuButton)
-			sleep(600)
-			Send($HSButton)
-			Sleep(200)
-			Send($HSButton)
-			Sleep(1000)
-		 EndIf
+   If $click = True Then
+	  If isOffCD($hscol, $hsRow) Then
+		 ConsoleWrite("hs triggered" & @LF)
+		 Send($hakuButton)
+		 sleep(600)
+		 Send($HSButton)
+		 Sleep(200)
+		 Send($HSButton)
+		 Sleep(1000)
+	  EndIf
 
-		 If isOffCD($sharpEyesCol, $sharpEyesRow) Then
-			consolewrite("sharp eyes triggered" & @LF)
-			send($sharpeyesButton)
-			sleep(200)
-			send($sharpeyesButton)
-			sleep(700)
-		 EndIf
+	  If isOffCD($sharpEyesCol, $sharpEyesRow) Then
+		 consolewrite("sharp eyes triggered" & @LF)
+		 send($sharpeyesButton)
+		 sleep(200)
+		 send($sharpeyesButton)
+		 sleep(700)
+	  EndIf
 
-		 While isOffCD($yukicol, $yukirow)
-			consolewrite("yuki triggered" & @LF)
-			Send($yukiButton)
-			sleep(200)
-		 Wend
-		 chicken()
-		 $count += 1
-      EndIf
+	  While isOffCD($yukicol, $yukirow)
+		 consolewrite("yuki triggered" & @LF)
+		 Send($yukiButton)
+		 sleep(200)
+	  Wend
+	  dcup2()
+	  $count += 1
+   EndIf
    WEnd
 
 Func close()
@@ -108,6 +168,28 @@ Func close()
    send("{up up}")
    send("{down up}")
    Exit
+EndFunc
+
+Func dcup2()
+   if $start And isoffcd($kishcol, $kishrow) Then
+	  dcup2setup()
+	  $start = False
+   EndIf
+   For $i = 2 To 1 Step -1
+	  dcup2Combo(True)
+	  For $j = 4 To 1 Step -1
+		 dcup2Combo()
+	  Next
+   Next
+
+   send($tenguButton)
+   sleep(500)
+   dropdown(200)
+   dropdown(800)
+   attack()
+   dropdown()
+   teleport("down")
+   dcup2Collect()
 EndFunc
 
 Func chicken()
@@ -295,15 +377,18 @@ EndFunc
 
 Func startScript()
    $click = True
+   $start = True
 EndFunc
 
-Func dropdown()
+Func dropdown($sleeptime = 0)
    Send("{down down}")
+   sleep(100)
+   send($jumpbutton)
    sleep(150)
    send($jumpbutton)
-   sleep(200)
+   sleep(150)
    send("{down up}")
-   Sleep(150)
+   Sleep($sleeptime)
 EndFunc
 
 Func isOffCD($col, $row)
@@ -335,7 +420,7 @@ EndFunc
 
 Func teleport($direction)
 Send("{" & $direction & " down}")
-sleep(150)
+sleep(100)
 Send($teleportButton)
 Sleep(150)
 Send($teleportButton)
@@ -359,10 +444,25 @@ Func kish()
    sleep(400)
 EndFunc
 
+Func domain()
+   While isOFFCD($domaincol, $domainrow)
+	  send($domainButton)
+	  sleep(150)
+   WEnd
+   sleep(300)
+EndFunc
 Func yaksha()
    While isOffCD($yakshaCol, $yaksharow)
 	  Send($yakshabutton)
 	  sleep(200)
+   WEnd
+   sleep(400)
+EndFunc
+
+Func tengu()
+   While isOffCD($tenguCol, $tengurow)
+	  Send($tengubutton)
+	  sleep(150)
    WEnd
    sleep(400)
 EndFunc
