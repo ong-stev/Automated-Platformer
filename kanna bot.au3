@@ -6,7 +6,7 @@ HotKeySet("{END}" , "close")
 HotKeySet("{HOME}", "startScript")
 HotKeySet("{INS}", "setPause")
 HotKeySet("{DEL}", "ccChickens")
-HotKeySet("g", "dcup2collect")
+HotKeySet("{F10}", "test")
 Dim $click = False
 Dim $start = False
 Dim $count = 0
@@ -58,7 +58,7 @@ Dim $tenguButton = "a"
 consolewrite("script activated" & @LF)
 Func test()
    while 1
-	  dcup2combo()
+	  tengu()
    wend
 EndFunc
 
@@ -67,7 +67,11 @@ Func dcup2Setup()
 	  teleport("right")
 	  sleep(200)
    Next
-   teleport("down")
+   	  $yellowPixel = PixelSearch(49, 105, 123, 113, 0xFFdd44, 10)
+   While @error
+	  teleport("down")
+	  $yellowPixel = PixelSearch(49, 105, 123, 113, 0xFFdd44, 10)
+   WEnd
    kish()
    teleport("up")
    For $i = 3 To 1 Step -1
@@ -76,44 +80,104 @@ Func dcup2Setup()
    Next
 EndFunc
 
-Func dcup2Combo($yaksha = False)
+Func dcup2Combo($mode = "none")
    tengu()
-   dropdown(1000)
+   $yellowPixel = PixelSearch(8, 83, 61, 114, 0xFFdd44, 10)
+   While Not @error
+	  consolewrite("leftdrop" & @LF)
+	  dropdown(1000)
+	  $yellowPixel = PixelSearch(8, 83, 61, 114, 0xFFdd44, 10)
+   WEnd
    attack()
-   dropdown()
-   teleport("down")
+   $yellowPixel = PixelSearch(199, 76, 230, 90, 0xFFdd44, 10)
+   While Not @error
+	  consolewrite("rightdrop" & @LF)
+	  dropdown()
+	  teleport("down")
+	  $yellowPixel = PixelSearch(199, 76, 230, 90, 0xFFdd44, 10)
+   WEnd
    sleep(200)
    attack()
-   if $yaksha Then
+   If $mode = "yaksha" Then
 	  teleport("left")
-	  sleep(600)
+	  sleep(300)
 	  teleport("left")
 	  yaksha()
    EndIf
-   dropdown(400)
+   If $mode = "collect" Then
+	  dcup2collect()
+   Else
+	  $yellowPixel = PixelSearch(132, 107, 229, 110, 0xFFdd44, 10)
+	  While Not @error
+		 consolewrite("bottomdrop" & @LF)
+		 dropdown(400)
+		 $yellowPixel = PixelSearch(132, 107, 229, 110, 0xFFdd44, 10)
+	  WEnd
+   EndIf
 EndFunc
 
 Func dcup2collect()
+   If isoffcd($yukicol, $yukirow) Then
+	  yuki()
+   EndIf
    For $i = 2 To 1 Step -1
 	  teleport("left")
-	  sleep(400)
+	  sleep(200)
    Next
    yaksha()
-   For $i = 3 To 1 Step -1
+   teleport("left")
+   sleep(200)
+   Send("{left down}")
+   $yellowPixel = PixelSearch(132, 107, 139, 113, 0xFFdd44, 10)
+   While @error
+	  sleep(100)
+	  $yellowPixel = PixelSearch(132, 107, 139, 113, 0xFFdd44, 10)
+   WEnd
+   Send("{left up}")
+   domain()
+   For $i = 2 To 1 Step -1
 	  teleport("left")
-	  sleep(400)
+	  sleep(200)
    Next
    kish()
    For $i = 1 To 1 Step -1
 	  teleport("left")
-	  sleep(400)
+	  sleep(200)
    Next
    tengu()
-   dropdown(400)
+   $yellowPixel = PixelSearch(52, 106, 120, 113, 0xFFdd44, 10)
+   While Not @error
+	  dropdown(400)
+	  $yellowPixel = PixelSearch(52, 106, 120, 113, 0xFFdd44, 10)
+   WEnd
 
-   For $i = 10 To 1 Step -1
+   For $i = 2 To 1 Step -1
+	  attack()
 	  teleport("left")
-	  sleep(400)
+   Next
+   Send("{left down}")
+   $yellowPixel = PixelSearch(151, 77, 158, 85, 0xFFdd44, 10)
+   While @error
+	  sleep(100)
+	  $yellowPixel = PixelSearch(151, 77, 158, 85, 0xFFdd44, 10)
+   WEnd
+   Send("{left up}")
+
+    For $i = 3 To 1 Step -1
+	  attack()
+	  teleport("left")
+   Next
+   Send("{left down}")
+   $yellowPixel = PixelSearch(79, 83, 86, 88, 0xFFdd44, 10)
+   While @error
+	  sleep(100)
+	  $yellowPixel = PixelSearch(79, 83, 86, 88, 0xFFdd44, 10)
+   WEnd
+   Send("{left up}")
+
+   For $i = 3 To 1 Step -1
+	  teleport("left")
+	  sleep(200)
    Next
 EndFunc
 
@@ -157,11 +221,7 @@ While 1
 		 sleep(700)
 	  EndIf
 
-	  While isOffCD($yukicol, $yukirow)
-		 consolewrite("yuki triggered" & @LF)
-		 Send($yukiButton)
-		 sleep(200)
-	  Wend
+
 	  dcup2()
 	  $count += 1
    EndIf
@@ -180,24 +240,17 @@ Func dcup2()
 	  dcup2setup()
 	  $start = False
    EndIf
-   For $i = 1 To 1 Step -1
-	  dcup2Combo(True)
+   For $i = 3 To 1 Step -1
+	  dcup2Combo("yaksha")
 	  For $j = 4 To 1 Step -1
 		 dcup2Combo()
 	  Next
    Next
-
-   send($tenguButton)
-   sleep(500)
-   dropdown(200)
-   dropdown(800)
-   attack()
-   dropdown()
-   teleport("down")
-   dcup2Collect()
+   dcup2combo("collect")
 EndFunc
 
 Func chicken()
+   yuki()
    send("{left down}")
    $leftdown = True
    sleep(100)
@@ -347,7 +400,7 @@ Func soul()
    teleport("down")
 
    send("{left down}")
-   For $i = 3 To 1 Step -1
+   For $i = 2 To 1 Step -1
 	  send($teleportButton)
 	  sleep(400)
 	  attack()
@@ -388,8 +441,6 @@ EndFunc
 Func dropdown($sleeptime = 0)
    Send("{down down}")
    sleep(100)
-   send($jumpbutton)
-   sleep(150)
    send($jumpbutton)
    sleep(150)
    send("{down up}")
@@ -456,6 +507,14 @@ Func domain()
    WEnd
    sleep(300)
 EndFunc
+
+Func yuki()
+   While isOffCD($yukicol, $yukirow)
+	  Send($yukiButton)
+	  sleep (200)
+   Wend
+EndFunc
+
 Func yaksha()
    While isOffCD($yakshaCol, $yaksharow)
 	  Send($yakshabutton)
@@ -469,7 +528,6 @@ Func tengu()
 	  Send($tengubutton)
 	  sleep(150)
    WEnd
-   sleep(400)
 EndFunc
 
 Func moveLeft($distance)
