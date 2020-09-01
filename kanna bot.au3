@@ -6,7 +6,7 @@ HotKeySet("{END}" , "close")
 HotKeySet("{HOME}", "startScript")
 HotKeySet("{INS}", "setPause")
 HotKeySet("{DEL}", "ccChickens")
-HotKeySet("g", "dcup2")
+HotKeySet("g", "dcup2collect")
 Dim $click = False
 Dim $start = False
 Dim $count = 0
@@ -56,6 +56,12 @@ Dim $tenguButton = "a"
 ;$dll = DllOpen("user32.dll")
 
 consolewrite("script activated" & @LF)
+Func test()
+   while 1
+	  dcup2combo()
+   wend
+EndFunc
+
 Func dcup2Setup()
    For $i = 3 To 1 Step -1
 	  teleport("right")
@@ -72,8 +78,7 @@ EndFunc
 
 Func dcup2Combo($yaksha = False)
    tengu()
-   dropdown(200)
-   dropdown(800)
+   dropdown(1000)
    attack()
    dropdown()
    teleport("down")
@@ -89,7 +94,7 @@ Func dcup2Combo($yaksha = False)
 EndFunc
 
 Func dcup2collect()
-   For $i = 3 To 1 Step -1
+   For $i = 2 To 1 Step -1
 	  teleport("left")
 	  sleep(400)
    Next
@@ -99,14 +104,14 @@ Func dcup2collect()
 	  sleep(400)
    Next
    kish()
-   For $i = 2 To 1 Step -1
+   For $i = 1 To 1 Step -1
 	  teleport("left")
 	  sleep(400)
    Next
    tengu()
    dropdown(400)
 
-   For $i = 11 To 1 Step -1
+   For $i = 10 To 1 Step -1
 	  teleport("left")
 	  sleep(400)
    Next
@@ -175,7 +180,7 @@ Func dcup2()
 	  dcup2setup()
 	  $start = False
    EndIf
-   For $i = 2 To 1 Step -1
+   For $i = 1 To 1 Step -1
 	  dcup2Combo(True)
 	  For $j = 4 To 1 Step -1
 		 dcup2Combo()
@@ -411,11 +416,11 @@ EndFunc
 
 Func attack()
    Send($shikigamiButton)
-   Sleep(200)
+   Sleep(150)
    Send($shikigamiButton)
-   Sleep(200)
+   Sleep(150)
    Send($shikigamiButton)
-   Sleep(400)
+   Sleep(300)
 EndFunc
 
 Func teleport($direction)
