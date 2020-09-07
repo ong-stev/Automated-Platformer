@@ -139,9 +139,7 @@ Func carnage($sleeptime = 0)
 EndFunc
 
 Func swipe($sleeptime = 0)
-   Send("{down down}")
-   Send($attackButton)
-   send("{down up}")
+   send($finalblowbutton)
    ;sleep(Random(10, 40, 1))
    sleep(450 + $sleeptime)
 EndFunc

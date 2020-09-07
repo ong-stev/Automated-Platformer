@@ -1,6 +1,7 @@
 #include<IE.au3>
 #include <Misc.au3>
 #RequireAdmin
+Opt('TrayIconDebug',1)
 
 HotKeySet("{END}" , "close")
 HotKeySet("{HOME}", "startScript")
@@ -57,9 +58,7 @@ Dim $tenguButton = "a"
 
 consolewrite("script activated" & @LF)
 Func test()
-   while 1
-	  tengu()
-   wend
+   dcup2combo("collect")
 EndFunc
 
 Func dcup2Setup()
@@ -74,13 +73,20 @@ Func dcup2Setup()
    WEnd
    kish()
    teleport("up")
-   For $i = 3 To 1 Step -1
-   	  teleport("left")
+
+   $yellowPixel = PixelSearch(8, 83, 61, 114, 0xFFdd44, 10)
+   while @error
+	  teleport("left")
 	  sleep(200)
-   Next
+	  $yellowPixel = PixelSearch(8, 83, 61, 114, 0xFFdd44, 10)
+   wend
 EndFunc
 
 Func dcup2Combo($mode = "none")
+   if $mode = "none" And isoffcd($kishcol, $kishrow) Then
+	  dcup2setup()
+   EndIf
+
    tengu()
    $yellowPixel = PixelSearch(8, 83, 61, 114, 0xFFdd44, 10)
    While Not @error
@@ -88,13 +94,14 @@ Func dcup2Combo($mode = "none")
 	  dropdown(1000)
 	  $yellowPixel = PixelSearch(8, 83, 61, 114, 0xFFdd44, 10)
    WEnd
-   attack()
-   $yellowPixel = PixelSearch(199, 76, 230, 90, 0xFFdd44, 10)
-   While Not @error
+   ;attack()
+   ; teleport down until we're on the bottom right platform
+   $yellowPixel = PixelSearch(179, 106, 229, 113, 0xFFdd44, 10)
+   While @error
 	  consolewrite("rightdrop" & @LF)
 	  dropdown()
 	  teleport("down")
-	  $yellowPixel = PixelSearch(199, 76, 230, 90, 0xFFdd44, 10)
+	  $yellowPixel = PixelSearch(179, 106, 229, 113, 0xFFdd44, 10)
    WEnd
    sleep(200)
    attack()
@@ -144,11 +151,20 @@ Func dcup2collect()
 	  teleport("left")
 	  sleep(200)
    Next
+   ;walk to the left side of the bottom left platform
+   Send("{left down}")
+   $yellowPixel = pixelSearch(50, 104, 64, 112, 0xFFdd44, 10)
+   While @error
+	  sleep(100)
+	  $yellowPixel = pixelSearch(50, 104, 64, 112, 0xFFdd44, 10)
+   WEnd
+   send("{left up}")
    tengu()
-   $yellowPixel = PixelSearch(52, 106, 120, 113, 0xFFdd44, 10)
-   While Not @error
+   ;drop down until we're on the upper right platform
+   $yellowPixel = PixelSearch(199, 76, 212, 87, 0xFFdd44, 10)
+   While @error
 	  dropdown(400)
-	  $yellowPixel = PixelSearch(52, 106, 120, 113, 0xFFdd44, 10)
+	  $yellowPixel = PixelSearch(199, 76, 212, 87, 0xFFdd44, 10)
    WEnd
 
    For $i = 2 To 1 Step -1
@@ -163,7 +179,7 @@ Func dcup2collect()
    WEnd
    Send("{left up}")
 
-    For $i = 3 To 1 Step -1
+   For $i = 3 To 1 Step -1
 	  attack()
 	  teleport("left")
    Next
@@ -240,13 +256,14 @@ Func dcup2()
 	  dcup2setup()
 	  $start = False
    EndIf
-   For $i = 2 To 1 Step -1
+   For $i = 1 To 1 Step -1
 	  dcup2Combo("yaksha")
-	  For $j = 4 To 1 Step -1
+	  For $j = 5 To 1 Step -1
 		 dcup2Combo()
 	  Next
    Next
    dcup2combo("collect")
+   dcup2combo()
 EndFunc
 
 Func chicken()
