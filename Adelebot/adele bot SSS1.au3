@@ -92,23 +92,23 @@ $yellowPixel = PixelSearch(79, 104, 161, 113, 0xFFdd44, 10); Rectangle 5
 	  IF NOT @error Then
 		 Send("{left down}")
 		 doublejump()
-		 $yellowPixel = PixelSearch(52, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
+		 $yellowPixel = PixelSearch(59, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
 		 While @error
 			doublejump()
 			sleep(100)
-			$yellowPixel = PixelSearch(52, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
+			$yellowPixel = PixelSearch(59, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
 		 WEnd
 		 Send("{left up}")
 	  EndIf
 
 ;resets if bottom left of default
-$yellowPixel = PixelSearch(29, 103, 53, 113, 0xFFdd44, 10); Extra #4
+$yellowPixel = PixelSearch(29, 103, 57, 113, 0xFFdd44, 10); Extra #4
    IF NOT @error Then
 	  Send("{right down}")
-	  $yellowPixel = PixelSearch(56, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
+	  $yellowPixel = PixelSearch(59, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
 		 While @error
 			sleep(100)
-			$yellowPixel = PixelSearch(56, 103, 81, 113, 0xFFdd44, 10); Rectangle 7......
+			$yellowPixel = PixelSearch(59, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
 		 WEnd
 		 Send("{right up}")
 	  EndIf
@@ -126,7 +126,7 @@ $yellowPixel = PixelSearch(53, 92, 71, 98, 0xFFdd44, 10); left of default
    EndIf
 
 
-   $yellowPixel = PixelSearch(52, 103, 70, 113, 0xFFdd44, 10); Rectangle 7
+   $yellowPixel = PixelSearch(59, 103, 70, 113, 0xFFdd44, 10); Rectangle 7
    IF NOT @error Then
 	  upjumpR()
 	  sleep(800)
@@ -188,24 +188,24 @@ $yellowPixel = PixelSearch(79, 104, 161, 113, 0xFFdd44, 10); Rectangle 5
 	  IF NOT @error Then
 		 Send("{left down}")
 		 doublejump()
-		 $yellowPixel = PixelSearch(52, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
+		 $yellowPixel = PixelSearch(59, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
 		 While @error
 			doublejump()
 			sleep(100)
-			$yellowPixel = PixelSearch(52, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
+			$yellowPixel = PixelSearch(59, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
 		 WEnd
 		 Send("{left up}")
 		 sleep(700)
 	  EndIf
 
 ;resets if bottom left of default
-$yellowPixel = PixelSearch(29, 103, 53, 113, 0xFFdd44, 10); Extra #4
+$yellowPixel = PixelSearch(29, 103, 57, 113, 0xFFdd44, 10); Extra #4
    IF NOT @error Then
 	  Send("{right down}")
-	  $yellowPixel = PixelSearch(56, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
+	  $yellowPixel = PixelSearch(59, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
 		 While @error
 			sleep(100)
-			$yellowPixel = PixelSearch(56, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
+			$yellowPixel = PixelSearch(59, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
 		 WEnd
 		 Send("{right up}")
 	  EndIf
@@ -222,7 +222,7 @@ $yellowPixel = PixelSearch(53, 92, 71, 98, 0xFFdd44, 10); left of default
 	  Send("{right up}")
    EndIf
 
-   $yellowPixel = PixelSearch(52, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
+   $yellowPixel = PixelSearch(59, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
    IF NOT @error Then
 	  upjumpR()
 	  sleep(800)
@@ -273,6 +273,7 @@ Func SSS1collect()
    Global $collectTimer = TimerInit()
    While TimerDiff($collectTimer) < 4000
    totem()
+   sleep(200)
    Send($stormbutton)
    sleep(600)
 
@@ -291,18 +292,19 @@ Func SSS1collect()
    $yellowPixel = PixelSearch(33, 72, 89, 82, 0xFFdd44, 10); Rectangle 1
    While @error
 	  upjumpL()
-	  sleep(800)
+	  sleep(1000)
 	  WEnd
 
    $yellowPixel = PixelSearch(33, 72, 89, 88, 0xFFdd44, 10); Rectangle 1
 	  IF NOT @error Then
 		 Send("{right down}")
-		$yellowPixel = PixelSearch(121, 72, 162, 98, 0xFFdd44, 10); Rectangle 2 modified
+		 sleep(200)
+		 $yellowPixel = PixelSearch(121, 72, 162, 98, 0xFFdd44, 10); Rectangle 2 modified
 		 While @error
 		 doublejump()
 		 attack()
-		 sleep(180)
-		$yellowPixel = PixelSearch(121, 72, 162, 98, 0xFFdd44, 10); Rectangle 2 modified
+		 sleep(220)
+		 $yellowPixel = PixelSearch(121, 72, 162, 98, 0xFFdd44, 10); Rectangle 2 modified
 	  WEnd
 	  Send("{right up}")
    EndIf
@@ -310,17 +312,15 @@ Func SSS1collect()
    $yellowPixel = PixelSearch(127, 79, 149, 87, 0xFFdd44, 10); Rectangle 2
 	  IF NOT @error Then
 		 Send("{left down}")
-		 sleep(400)
-		 jumpattack()
-		 sleep(1900)
-		 $yellowPixel = PixelSearch(95, 90, 127, 98, 0xFFdd44, 10); Rectangle 3
+		 sleep(2700)
+		 $yellowPixel = PixelSearch(95, 90, 127, 113, 0xFFdd44, 10); Rectangle 3
 		 While @error
 			sleep(100)
 			$yellowPixel = PixelSearch(109, 72, 119, 82, 0xFFdd44, 10); Extra#2
 			IF NOT @error Then
 			   dropdown()
 			   EndIf
-			$yellowPixel = PixelSearch(95, 90, 127, 98, 0xFFdd44, 10); Rectangle 3
+			$yellowPixel = PixelSearch(95, 90, 127, 113, 0xFFdd44, 10); Rectangle 3
 		 WEnd
 		 Send("{left up}")
    EndIf
@@ -346,18 +346,18 @@ Func SSS1collect()
    $yellowPixel = PixelSearch(79, 104, 161, 113, 0xFFdd44, 10); Rectangle 5
 	  IF NOT @error Then
 		 Send("{left down}")
-		 $yellowPixel = PixelSearch(50, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
+		 $yellowPixel = PixelSearch(53, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
 		 While @error
 			doublejump()
 			attack()
 			sleep(180)
-			$yellowPixel = PixelSearch(50, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
+			$yellowPixel = PixelSearch(53, 103, 77, 113, 0xFFdd44, 10); Rectangle 7
 		 WEnd
 		 Send("{left up}")
 		 sleep(800)
    EndIf
 
-   $yellowPixel = PixelSearch(50, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
+   $yellowPixel = PixelSearch(53, 103, 81, 113, 0xFFdd44, 10); Rectangle 7
    IF NOT @error Then
 	  upjumpR()
 	  sleep(800)

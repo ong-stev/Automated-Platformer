@@ -39,6 +39,8 @@ Dim $onilordRow = 0
 Dim $onilordCol = 8
 Dim $balanceRow = 1
 Dim $balanceCol = 4
+Dim $arachnidRow = 1
+Dim $arachnidCol = 9
 
 Dim $shikigamiButton = "a"
 Dim $yakshaButton = "x"
@@ -58,6 +60,7 @@ Dim $balanceButton = "z"
 Dim $ccButton = ","
 Dim $tenguButton = "v"
 Dim $onilordButton = "6"
+Dim $arachnidButton = "b"
 
 Global $yakshaTimer
 Global $collectTimer
@@ -72,11 +75,11 @@ EndFunc
 While 1
    If $click = True Then
 		 Send($hakuButton)
-		 sleep(600)
+		 sleep(450)
 
 	  If isOffCD($sharpEyesCol, $sharpEyesRow) Then
 		 send($sharpeyesButton)
-		 sleep(200)
+		 sleep(100)
 	  EndIf
 
 	  MF2()
@@ -97,6 +100,7 @@ Func MF2Setup()
    $yellowPixel = PixelSearch(9, 74, 26, 129, 0xFFdd44, 10) ; (Null 3)
    If NOT @error Then
 	  teleport("right")
+	  sleep(200)
    EndIf
 
    $yellowPixel = PixelSearch(106, 86, 134, 92, 0xFFdd44, 10) ; (Platform 2.5)
@@ -105,7 +109,7 @@ Func MF2Setup()
 	  sleep(200)
    EndIf
 
-   $yellowPixel = PixelSearch(68, 105, 115, 115, 0xFFdd44, 10) ; (Platform 1)
+   $yellowPixel = PixelSearch(68, 105, 155, 115, 0xFFdd44, 10) ; (Platform 1)
    If NOT @error Then
 	  teleport("left")
 	  sleep(200)
@@ -126,7 +130,7 @@ Func MF2Setup()
 
    $yellowPixel = PixelSearch(68, 91, 94, 100, 0xFFdd44, 10) ; (Boss)
    If NOT @error Then
-	  moveleft(15)
+	  moveleft(25)
 	  yaksha()
 	  Global $yakshaTimer = TimerInit()
    EndIf
@@ -140,13 +144,14 @@ Func MF2Setup()
    If isOFFCD($kishcol, $kishrow) Then
    $yellowPixel = PixelSearch(68, 105, 89, 115, 0xFFdd44, 10) ; (Teleport 1)
    If NOT @error Then
-	  Send("{left down}")
+	  teleport("down")
+	  sleep(200)
+	  arachnid()
 	  $yellowPixel = PixelSearch(27, 116, 58, 126, 0xFFdd44, 10) ; (Kish)
 	  While @error
 		 teleport("left")
 		 $yellowPixel = PixelSearch(27, 116, 58, 126, 0xFFdd44, 10) ; (Kish)
 	  WEnd
-	  Send("{left up}")
 	  kish()
    EndIf
 EndIf
@@ -177,7 +182,7 @@ EndIf
 	  Send("{right up}")
    EndIf
 
-   $yellowPixel = PixelSearch(97, 118, 125, 127, 0xFFdd44, 10) ; (Bottom of Default)
+   $yellowPixel = PixelSearch(97, 118, 131, 127, 0xFFdd44, 10) ; (Bottom of Default)
    If NOT @error Then
 	  teleport("up")
 	  sleep(200)
@@ -190,13 +195,12 @@ EndIf
    EndIf
 EndFunc
 
-
-
 Func MF2Combo()
    While TimerDiff($yakshaTimer) < 27000
    $yellowPixel = PixelSearch(9, 74, 26, 129, 0xFFdd44, 10) ; (Null 3)
    If NOT @error Then
 	  teleport("right")
+	  sleep(200)
    EndIf
    $yellowPixel = PixelSearch(68, 105, 89, 115, 0xFFdd44, 10) ; (Teleport 1)
    If NOT @error Then
@@ -207,31 +211,28 @@ Func MF2Combo()
    $yellowPixel = PixelSearch(78, 87, 107, 115, 0xFFdd44, 10) ; (Left of Default)
    If NOT @error Then
 	  Send("{right down}")
-	  $yellowPixel = PixelSearch(109, 105, 115, 115, 0xFFdd44, 10) ; (Default)
+	  $yellowPixel = PixelSearch(109, 105, 120, 115, 0xFFdd44, 10) ; (Default)
 	  While @error
 		 sleep(100)
-		 $yellowPixel = PixelSearch(109, 105, 115, 115, 0xFFdd44, 10) ; (Default)
+		 $yellowPixel = PixelSearch(109, 105, 120, 115, 0xFFdd44, 10) ; (Default)
 	  WEnd
 	  Send("{right up}")
    EndIf
 
-   $yellowPixel = PixelSearch(117, 105, 155, 115, 0xFFdd44, 10) ; (Right of Default)
+   $yellowPixel = PixelSearch(122, 105, 155, 115, 0xFFdd44, 10) ; (Right of Default)
    If NOT @error Then
 	  Send("{left down}")
-	  $yellowPixel = PixelSearch(109, 105, 115, 115, 0xFFdd44, 10) ; (Default)
+	  $yellowPixel = PixelSearch(109, 105, 120, 115, 0xFFdd44, 10) ; (Default)
 	  While @error
 		 sleep(100)
-		 $yellowPixel = PixelSearch(109, 105, 115, 115, 0xFFdd44, 10) ; (Default)
+		 $yellowPixel = PixelSearch(109, 105, 120, 115, 0xFFdd44, 10) ; (Default)
 	  WEnd
 	  Send("{left up}")
    EndIf
 
-   $yellowPixel = PixelSearch(68, 105, 115, 115, 0xFFdd44, 10) ; (Platform 1)
-   If Not @error Then
-	  sleep(300)
-	  exorcist()
-	  sleep(300)
-	  attack()
+   If isoffcd($balancecol, $balancerow) Then
+	  Send($balancebutton)
+	  sleep(200)
    EndIf
 
    If isoffcd($yukicol, $yukirow) Then
@@ -241,13 +242,21 @@ Func MF2Combo()
 	  ninetails()
    EndIf
 
-   $yellowPixel = PixelSearch(109, 105, 115, 115, 0xFFdd44, 10) ; (Default)
+
+   $yellowPixel = PixelSearch(68, 105, 155, 115, 0xFFdd44, 10) ; (Platform 1)
+   If Not @error Then
+	  sleep(1000)
+	  exorcist()
+	  attack()
+   EndIf
+
+   $yellowPixel = PixelSearch(109, 105, 120, 115, 0xFFdd44, 10) ; (Default)
    If NOT @error Then
 	  teleport("up")
 	  sleep(200)
    EndIf
 
-   $yellowPixel = PixelSearch(104, 86, 119, 92, 0xFFdd44, 10) ; (Attack)
+   $yellowPixel = PixelSearch(104, 86, 122, 92, 0xFFdd44, 10) ; (Attack)
    If NOT @error Then
 	  moveright(10)
 	  attack()
@@ -290,7 +299,8 @@ EndIf
 	  $yellowPixel = PixelSearch(97, 118, 125, 127, 0xFFdd44, 10) ; (Bottom of Default)
 	  While @error
 		 teleport("right")
-		 sleep(180)
+		 sleep(200)
+		 attack()
 		 $yellowPixel = PixelSearch(97, 118, 125, 127, 0xFFdd44, 10) ; (Bottom of Default)
 	  WEnd
 	  Send("{right up}")
@@ -302,7 +312,7 @@ EndIf
 	  $yellowPixel = PixelSearch(97, 118, 125, 127, 0xFFdd44, 10) ; (Bottom of Default)
 	  While @error
 		 teleport("right")
-		 sleep(180)
+		 sleep(200)
 		 attack()
 		 $yellowPixel = PixelSearch(97, 118, 125, 127, 0xFFdd44, 10) ; (Bottom of Default)
 	  WEnd
@@ -312,7 +322,7 @@ EndIf
    $yellowPixel = PixelSearch(97, 118, 125, 127, 0xFFdd44, 10) ; (Bottom of Default)
    If NOT @error Then
 	  teleport("up")
-	  sleep(180)
+	  sleep(200)
    EndIf
 WEnd
 EndFunc
@@ -339,10 +349,18 @@ Func MF2Collect()
    domain()
    Send($onilordbutton)
    teleport("right")
-   sleep(200)
-   attack()
-   teleport("left")
-   sleep(200)
+   sleep(500)
+
+   $yellowPixel = PixelSearch(68, 118, 155, 128, 0xFFdd44, 10) ; (Platform 2)
+   If NOT @error Then
+	  Send("{right down}")
+	  $yellowPixel = PixelSearch(147, 118, 175, 128, 0xFFdd44, 10) ; (Collect 6)
+	  While @error
+		 sleep(100)
+		 $yellowPixel = PixelSearch(147, 118, 175, 128, 0xFFdd44, 10) ; (Collect 6)
+	  WEnd
+	  Send("{right up}")
+   EndIf
 
    $yellowPixel = PixelSearch(68, 118, 155, 128, 0xFFdd44, 10) ; (Platform 2)
    If NOT @error Then
@@ -350,54 +368,58 @@ Func MF2Collect()
 	  sleep(200)
    EndIf
 
+
+   $yellowPixel = PixelSearch(141, 97, 175, 128, 0xFFdd44, 10) ; (Collect 1)
+   If NOT @error Then
+	  attack()
+	  teleport("up")
+	  sleep(200)
+   EndIf
+
+   $yellowPixel = PixelSearch(154, 105, 178, 128, 0xFFdd44, 10) ; (Null 2)
+   If NOT @error Then
+	  teleport("left")
+	  sleep(200)
+   EndIf
+
+   $yellowPixel = PixelSearch(68, 118, 155, 128, 0xFFdd44, 10) ; (Platform 2)
+   If NOT @error Then
+	  teleport("up")
+	  sleep(200)
+   EndIf
+
+   $yellowPixel = PixelSearch(141, 97, 175, 128, 0xFFdd44, 10) ; (Collect 1)
+   If NOT @error Then
+	  attack()
+	  teleport("up")
+	  sleep(200)
+   EndIf
+
+#comments-start
    $yellowPixel = PixelSearch(68, 105, 155, 115, 0xFFdd44, 10) ; (Platform 1)
    If NOT @error Then
-   tengu()
    Send("{right down}")
 	  $yellowPixel = PixelSearch(141, 105, 175, 128, 0xFFdd44, 10) ; (Collect 1)
 		 While @error
-		 teleport("right")
-		 sleep(200)
+		 sleep(100)
 	  $yellowPixel = PixelSearch(141, 105, 175, 128, 0xFFdd44, 10) ; (Collect 1)
    WEnd
    Send("{right up}")
 EndIf
+#comments-end
 
-   $yellowPixel = PixelSearch(154, 105, 175, 128, 0xFFdd44, 10) ; (Null 2)
-   If NOT @error Then
-	  teleport("left")
-   EndIf
-
-   $yellowPixel = PixelSearch(123, 85, 161, 92, 0xFFdd44, 10) ; (Collect 2 modified)
-   While @error
-	  teleport("up")
-	  sleep(200)
-	  $yellowPixel = PixelSearch(123, 85, 161, 92, 0xFFdd44, 10) ; (Collect 2 modified)
-   WEnd
 
    $yellowPixel = PixelSearch(123, 85, 161, 92, 0xFFdd44, 10) ; (Collect 2 modified)
    If NOT @error Then
 	  Send("{left down}")
-	  teleport("left")
-	  $yellowPixel = PixelSearch(104, 86, 124, 92, 0xFFdd44, 10) ; (Attack modified)
+	  attack()
+	  $yellowPixel = PixelSearch(104, 86, 117, 92, 0xFFdd44, 10) ; (Attack modified)
 	  While @error
 		 sleep(100)
-		 $yellowPixel = PixelSearch(104, 86, 124, 92, 0xFFdd44, 10) ; (Attack modified)
+		 $yellowPixel = PixelSearch(104, 86, 117, 92, 0xFFdd44, 10) ; (Attack modified)
 	  WEnd
    EndIf
 
-   $yellowPixel = PixelSearch(73, 91, 97, 115, 0xFFdd44, 10) ; (Boss + Teleport 1 Mod)
-   IF NOT @error Then
-	  $yellowPixel = PixelSearch(24, 74, 107, 83, 0xFFdd44, 10) ; (Platform 3)
-	  While @error
-		 teleport("up")
-		 sleep(200)
-	  WEnd
-   EndIf
-
-   If isoffcd($ninetailscol, $ninetailsrow) Then
-	  ninetails()
-   EndIf
 
    $yellowPixel = PixelSearch(101, 86, 123, 92, 0xFFdd44, 10) ; (Attack modified)
    If NOT @error Then
@@ -407,46 +429,59 @@ EndIf
 	  sleep(300)
    EndIf
 
+   $yellowPixel = PixelSearch(73, 91, 97, 115, 0xFFdd44, 10) ; (Boss + Teleport 1 Mod)
+   IF NOT @error Then
+	  $yellowPixel = PixelSearch(24, 74, 107, 83, 0xFFdd44, 10) ; (Platform 3)
+	  While @error
+		 teleport("up")
+		 sleep(200)
+		 $yellowPixel = PixelSearch(24, 74, 107, 83, 0xFFdd44, 10) ; (Platform 3)
+	  WEnd
+   EndIf
+
    $yellowPixel = PixelSearch(24, 74, 107, 83, 0xFFdd44, 10) ; (Platform 3)
    If NOT @error Then
 	  attack()
 	  Send("{left down}")
-	  $yellowPixel = PixelSearch(24, 74, 49, 83, 0xFFdd44, 10) ; (Platform 3 End)
+	  $yellowPixel = PixelSearch(9, 74, 47, 128, 0xFFdd44, 10) ; (Platform 3 End)
 	  While @error
 		 teleport("left")
-		 sleep(230)
-		 $yellowPixel = PixelSearch(24, 74, 49, 83, 0xFFdd44, 10) ; (Platform 3 End)
+		 sleep(200)
+		 attack()
+		 $yellowPixel = PixelSearch(22, 74, 47, 83, 0xFFdd44, 10) ; (Platform 3 End)
 	  WEnd
 	  Send("{left up}")
    EndIf
 
-   $yellowPixel = PixelSearch(9, 74, 26, 129, 0xFFdd44, 10) ; (Null 3)
+   $yellowPixel = PixelSearch(9, 74, 24, 129, 0xFFdd44, 10) ; (Null 3)
    If NOT @error Then
 	  teleport("right")
    EndIf
 
-   $yellowPixel = PixelSearch(24, 74, 49, 83, 0xFFdd44, 10) ; (Platform 3 End)
+   $yellowPixel = PixelSearch(22, 74, 107, 83, 0xFFdd44, 10) ; (Platform 3 End)
    IF NOT @error Then
 	  teleport("down")
 	  sleep(200)
+	  attack()
 	  EndIf
 
    $yellowPixel = PixelSearch(24, 91, 94, 100, 0xFFdd44, 10) ; (Platform 4)
    If NOT @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(73, 91, 94, 100, 0xFFdd44, 10) ; (Boss)
+   $yellowPixel = PixelSearch(78, 91, 110, 115, 0xFFdd44, 10) ; (Boss)
 	  While @error
 		 teleport("right")
 		 sleep(200)
 		 attack()
-		 $yellowPixel = PixelSearch(73, 91, 94, 100, 0xFFdd44, 10) ; (Boss)
+		 $yellowPixel = PixelSearch(78, 91, 110, 115, 0xFFdd44, 10) ; (Boss)
 		 WEnd
 	  Send("{right up}")
    EndIf
 
-      $yellowPixel = PixelSearch(9, 74, 26, 129, 0xFFdd44, 10) ; (Null 3)
+      $yellowPixel = PixelSearch(9, 74, 22, 129, 0xFFdd44, 10) ; (Null 3)
    If NOT @error Then
 	  teleport("right")
+	  sleep(200)
    EndIf
    EndFunc
 
@@ -1277,6 +1312,14 @@ Func upJump()
    sleep(200)
    send($shikigamicharmbutton)
    sleep(600)
+EndFunc
+
+Func arachnid()
+   While isOffCD($arachnidcol, $arachnidrow)
+	  Send($arachnidbutton)
+	  sleep(300)
+   WEnd
+   sleep(100)
 EndFunc
 
 Func kish()

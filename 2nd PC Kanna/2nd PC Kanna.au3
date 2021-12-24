@@ -73,17 +73,23 @@ While 1
 		 Send($hakuButton)
 		 sleep(600)
 
-	  If isOffCD($sharpEyesCol, $sharpEyesRow) Then
-		 consolewrite("sharp eyes triggered" & @LF)
-		 send($sharpeyesButton)
-		 sleep(200)
 
-	  EndIf
-
-	  MTS4()
+	  pckanna()
 	  $count += 1
    EndIf
    WEnd
+
+Func pckanna()
+   kish()
+   attack()
+   sleep(2000)
+   moveright(30)
+   sleep(2000)
+   moveleft(30)
+   sleep(2000)
+EndFunc
+
+
 
 Func MTS4()
    For $i = 3 To 1 Step -1
@@ -201,10 +207,10 @@ Func MTS4Combo()
 	  IF NOT @error Then
 		 Send("{left down}")
 		 attack()
-	  $yellowPixel = PixelSearch(94, 108, 122, 128, 0xFFdd44, 10); (Rectangle 4)correct position
+	  $yellowPixel = PixelSearch(116, 108, 122, 115, 0xFFdd44, 10); (Rectangle 4)correct position
 	  while @error
 		 sleep(100)
-		 $yellowPixel = PixelSearch(94, 108, 122, 128, 0xFFdd44, 10); (Rectangle 4)correct position
+		 $yellowPixel = PixelSearch(116, 108, 122, 115, 0xFFdd44, 10); (Rectangle 4) correct position
 	  WEnd
 	  Send("{left up}")
 	  EndIf
@@ -248,19 +254,18 @@ Func MTS4Collect()
 
    Send("{left down}")
    attack()
-   $yellowPixel = PixelSearch(33, 117, 38, 128, 0xFFdd44, 10) ; (Rectangle 3)
+   $yellowPixel = PixelSearch(37, 117, 40, 128, 0xFFdd44, 10) ; (Rectangle 3)
    While @error
 	  sleep(100)
-	  $yellowPixel = PixelSearch(33, 117, 38, 128, 0xFFdd44, 10) ; (Rectangle 3)
+	  $yellowPixel = PixelSearch(37, 117, 40, 128, 0xFFdd44, 10) ; (Rectangle 3)
 	  WEnd
    Send("{left up}")
 
-   $yellowPixel = PixelSearch(10, 85, 52, 113, 0xFFdd44, 10) ; (Rectangle 4)
+   $yellowPixel = PixelSearch(10, 107, 41, 113, 0xFFdd44, 10) ; (Rectangle 4)
    While @error
 	  teleport("up")
-	  $yellowPixel = PixelSearch(10, 82, 52, 113, 0xFFdd44, 10) ; (Rectangle 4)
+	  $yellowPixel = PixelSearch(10, 107, 41, 113, 0xFFdd44, 10) ; (Rectangle 4)
    WEnd
-   sleep(200)
    attack()
    sleep(200)
 
@@ -268,10 +273,10 @@ Func MTS4Collect()
 	  IF NOT @error Then
 
 	  Send("{left down}")
-		 $yellowPixel = PixelSearch(33, 117, 38, 128, 0xFFdd44, 10) ; (Rectangle 3)
+		 $yellowPixel = PixelSearch(37, 117, 40, 128, 0xFFdd44, 10) ; (Rectangle 3)
 		 While @error
 			sleep(100)
-			$yellowPixel = PixelSearch(33, 117, 38, 128, 0xFFdd44, 10) ; (Rectangle 3)
+			$yellowPixel = PixelSearch(37, 117, 40, 128, 0xFFdd44, 10) ; (Rectangle 3)
 		 WEnd
 		 Send("{left up}")
 	  EndIf
@@ -281,7 +286,7 @@ Func MTS4Collect()
 	  teleport("up")
 	  $yellowPixel = PixelSearch(32, 85, 49, 94, 0xFFdd44, 10) ; (Rectangle 6)
    WEnd
-   sleep(200)
+   sleep(100)
 
    Send("{right down}")
 	  $yellowPixel = PixelSearch(47, 85, 52, 94, 0xFFdd44, 10) ; (Rectangle 7)
@@ -454,10 +459,10 @@ Func MTS4Collect()
 	  IF NOT @error Then
 		 Send("{left down}")
 		 attack()
-   $yellowPixel = PixelSearch(94, 108, 122, 128, 0xFFdd44, 10); (Rectangle 4)correct position
+   $yellowPixel = PixelSearch(116, 108, 122, 115, 0xFFdd44, 10); (Rectangle 4)correct position
 	  while @error
 		 sleep(100)
-		 $yellowPixel = PixelSearch(94, 108, 122, 128, 0xFFdd44, 10); (Rectangle 4)correct position
+		 $yellowPixel = PixelSearch(116, 108, 122, 115, 0xFFdd44, 10); (Rectangle 4) correct position
 	  WEnd
 	  Send("{left up}")
    EndIf
