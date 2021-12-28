@@ -35,7 +35,7 @@ sleep(1000)
 Send("{ENTER}")
 sleep(3000)
 MouseClick ($MOUSE_CLICK_LEFT, 299, 972, 1, 2)
-sleep(320000)
+sleep(310000)
 EndFunc
 
 Func close()
