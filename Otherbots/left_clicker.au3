@@ -30,12 +30,12 @@ WEnd
 
 
 Func LeftClick()
-MouseClick ($MOUSE_CLICK_LEFT, 531, 991, 1, 2)
+MouseClick ($MOUSE_CLICK_LEFT, 531, 991, 2, 4)
 sleep(1000)
 Send("{ENTER}")
-sleep(3000)
-MouseClick ($MOUSE_CLICK_LEFT, 299, 972, 1, 2)
-sleep(310000)
+sleep(4000)
+MouseClick ($MOUSE_CLICK_LEFT, 299, 972, 1, 4)
+sleep(312000)
 EndFunc
 
 Func close()
