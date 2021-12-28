@@ -71,7 +71,7 @@ EndFunc
 While 1
    If $click = True Then
 		 Send($hakuButton)
-		 sleep(600)
+		 sleep(450)
 
 
 	  pckanna()
