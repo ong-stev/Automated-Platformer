@@ -83,9 +83,9 @@ Func pckanna()
    kish()
    attack()
    sleep(2000)
-   moveright(30)
+   moveright(45)
    sleep(2000)
-   moveleft(30)
+   moveleft(45)
    sleep(2000)
 EndFunc
 
