@@ -78,9 +78,8 @@ While 1
    WEnd
 
 Func DC4()
-   For $i = 2 To 1 Step -1
-	  DC4setup()
-	  DC4combo()
+   DC4setup()
+   DC4combo()
 EndFunc
 
 Func DC4setup()
@@ -102,11 +101,11 @@ Func DC4setup()
    EndIf
 EndFunc
 
-Func DC4combo
+Func DC4combo()
 While TimerDiff($totemTimer) < 27000
 
 setup()
-While Not @error
+While @error
    Send("{left down}")
    doublejump()
    attack()
@@ -116,7 +115,7 @@ WEnd
 Send("{left up}")
 
 leftBottom()
-While Not @error
+While @error
    Send("{right down}")
    upJumpR()
    attack()
@@ -131,7 +130,7 @@ Send("{right up}")
    EndIf
 
 jumpupRight()
-While Not @error
+While @error
    Send("{right down}")
    upJumpR()
    attack()
@@ -146,7 +145,7 @@ Send("{right up}")
    EndIf
 
 leftTop()
-While Not @error
+While @error
    Send("{right down}")
    doublejump()
    attack()
@@ -156,7 +155,7 @@ WEnd
 Send("{right up}")
 
 middleNull()
-While Not @error
+While @error
    Send("{right down}")
    upJumpR()
    attack()
@@ -166,7 +165,7 @@ WEnd
 Send("{right up}")
 
 middleNull2()
-While Not @error
+While @error
    Send("{right down}")
    upJumpR()
    attack()
@@ -181,7 +180,7 @@ Send("{right up}")
    EndIf
 
 middleTop()
-While Not @error
+While @error
    Send("{right down}")
    doublejump()
    attack()
@@ -191,7 +190,7 @@ WEnd
 Send("{right up}")
 
 middleTop2()
-While Not @error
+While @error
    Send("{right down}")
    doublejump()
    attack()
@@ -207,7 +206,7 @@ Send("{right up}")
 
 
 rightTop()
-While Not @error
+While @error
    moveLeft(10)
    dropdown()
    attack()
@@ -216,12 +215,13 @@ While Not @error
 WEnd
 
 dropdownLeft()
-While Not @error
+While @error
    moveLeft(10)
    dropdown()
    attack()
    sleep(200)
    dropdownLeft()
+WEnd
 WEnd
 EndFunc
 
