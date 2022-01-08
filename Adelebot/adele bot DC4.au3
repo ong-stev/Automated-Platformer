@@ -95,10 +95,6 @@ Func DC4setup()
    Global $totemTimer = TimerInit()
    sleep(300)
 
-   If isOFFCD($infinitycol, $infinityrow) Then
-	  infinity()
-	  sleep(1200)
-   EndIf
 EndFunc
 
 Func DC4combo()
@@ -108,79 +104,83 @@ setup()
 If Not @error Then
    Send("{left down}")
    bound1()
-   While @error
-   doublejump()
-   attack()
-   sleep(180)
-   bound1()
-WEnd
-Send("{left up}")
-EndIf
+	  While @error
+		 doublejump()
+		 attack()
+		 sleep(180)
+		 bound1()
+	  WEnd
+	  Send("{left up}")
+   EndIf
 
 leftBottom()
 If Not @error Then
    Send("{right down}")
    bound2()
-   While @error
-	  If isOffCD($impalecol, impalerow) Then
-		 rushM(right, up)
-	  EndIf
-   upJumpR()
-   attack()
-   sleep(800)
-   bound2()
-WEnd
-Send("{right up}")
-EndIf
+	  While @error
+		 If isOffCD($impalecol, impalerow) Then
+			rushM(right, up)
+		 EndIf
+		 upJumpR()
+		 attack()
+		 sleep(800)
+		 bound2()
+	  WEnd
+	  Send("{right up}")
+   EndIf
 
+#comments-start
    If isOFFCD($reigncol, $reignrow) Then
 	  reign()
 	  sleep(600)
    EndIf
+#comments-end
 
 jumpupRight()
 If Not @error Then
    Send("{right down}")
    bound2()
-   While @error
-   upJumpR()
-   attack()
-   sleep(800)
-   bound2()
-WEnd
-Send("{right up}")
-EndIf
+	  While @error
+		 upJumpR()
+		 attack()
+		 sleep(800)
+		 bound2()
+	  WEnd
+	  Send("{right up}")
+   EndIf
 
+#comments-start
    If isOFFCD($shardbreakercol, $shardbreakerrow) Then
 	  shardbreaker()
 	  sleep(500)
    EndIf
+#comments-end
 
 leftTop()
 If Not @error Then
    Send("{right down}")
    pillar1()
-   While @error
-   doublejump()
-   attack()
-   sleep(180)
-   pillar1()
-WEnd
-Send("{right up}")
-EndIf
+	  While @error
+		 doublejump()
+		 attack()
+		 sleep(180)
+		 pillar1()
+	  WEnd
+	  Send("{right up}")
+   EndIf
 
 middleNull()
 If Not @error Then
    Send("{right down}")
    bound2()
-   While @error
-   	  If isOffCD($impalecol, impalerow) Then
-		 rushM(right, up)
-	  EndIf
-   upJumpR()
-   attack()
-   sleep(800)
-   bound2()
+	  While @error
+		 If isOffCD($impalecol, impalerow) Then
+			rushM(right, up)
+		 EndIf
+		 upJumpR()
+		 attack()
+		 sleep(800)
+		 bound2()
 WEnd
 Send("{right up}")
 EndIf
@@ -201,10 +201,12 @@ WEnd
 Send("{right up}")
 EndIf
 
+#comments-start
    If isOFFCD($infinitycol, $infinityrow) Then
 	  infinity()
 	  sleep(1200)
    EndIf
+#comments-end
 
 middleTop()
 If Not @error Then
@@ -232,10 +234,12 @@ WEnd
 Send("{right up}")
 EndIf
 
+#comments-start
    If isOFFCD($bloomcol, $bloomrow) Then
 	  bloom()
 	  sleep(600)
    EndIf
+#comments-end
 
 
 rightTop()
@@ -277,17 +281,16 @@ EndFunc
 
 
 ;   MINIMAP BOXES
-Func setup()
-   $yellowPixel = PixelSearch(85, 141, 189, 154, 0xFFdd44, 10)
-EndFunc
+$setup() = $yellowPixel = PixelSearch(85, 141, 189, 154, 0xFFdd44, 10)
 
-Func leftBottom()
+
+leftBottom()
    $yellowPixel = PixelSearch(66, 141, 83, 154, 0xFFdd44, 10)
-EndFunc
 
-Func jumpUpRight()
+
+jumpUpRight()
    $yellowPixel = PixelSearch(63, 113, 96, 139, 0xFFdd44, 10)
-EndFunc
+
 
 Func leftTop()
    $yellowPixel = PixelSearch(66, 84, 96, 111, 0xFFdd44, 10)
