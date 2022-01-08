@@ -102,27 +102,36 @@ Func DC4setup()
 EndFunc
 
 Func DC4combo()
-While TimerDiff($totemTimer) < 27000
+While TimerDiff($totemTimer) < 60000
 
 setup()
-While @error
+If Not @error Then
    Send("{left down}")
+   bound1()
+   While @error
    doublejump()
    attack()
    sleep(180)
-   setup()
+   bound1()
 WEnd
 Send("{left up}")
+EndIf
 
 leftBottom()
-While @error
+If Not @error Then
    Send("{right down}")
+   bound2()
+   While @error
+	  If isOffCD($impalecol, impalerow) Then
+		 rushM(right, up)
+	  EndIf
    upJumpR()
    attack()
    sleep(800)
-   leftBottom()
+   bound2()
 WEnd
 Send("{right up}")
+EndIf
 
    If isOFFCD($reigncol, $reignrow) Then
 	  reign()
@@ -130,14 +139,17 @@ Send("{right up}")
    EndIf
 
 jumpupRight()
-While @error
+If Not @error Then
    Send("{right down}")
+   bound2()
+   While @error
    upJumpR()
    attack()
    sleep(800)
-   jumpupRight()
+   bound2()
 WEnd
 Send("{right up}")
+EndIf
 
    If isOFFCD($shardbreakercol, $shardbreakerrow) Then
 	  shardbreaker()
@@ -145,34 +157,49 @@ Send("{right up}")
    EndIf
 
 leftTop()
-While @error
+If Not @error Then
    Send("{right down}")
+   pillar1()
+   While @error
    doublejump()
    attack()
    sleep(180)
-   leftTop()
+   pillar1()
 WEnd
 Send("{right up}")
+EndIf
 
 middleNull()
-While @error
+If Not @error Then
    Send("{right down}")
+   bound2()
+   While @error
+   	  If isOffCD($impalecol, impalerow) Then
+		 rushM(right, up)
+	  EndIf
    upJumpR()
    attack()
    sleep(800)
-   middleNull()
+   bound2()
 WEnd
 Send("{right up}")
+EndIf
 
 middleNull2()
-While @error
+If Not @error Then
    Send("{right down}")
+   bound2()
+   While @error
+   	  If isOffCD($impalecol, impalerow) Then
+		 rushM(right, up)
+	  EndIf
    upJumpR()
    attack()
    sleep(800)
-   middleNull2()
+   bound2()
 WEnd
 Send("{right up}")
+EndIf
 
    If isOFFCD($infinitycol, $infinityrow) Then
 	  infinity()
@@ -180,24 +207,30 @@ Send("{right up}")
    EndIf
 
 middleTop()
-While @error
+If Not @error Then
    Send("{right down}")
+   pillar2()
+   While @error
    doublejump()
    attack()
    sleep(180)
-   middleTop()
+   pillar2()
 WEnd
 Send("{right up}")
+EndIf
 
 middleTop2()
-While @error
+If Not @error Then
    Send("{right down}")
+   bound3()
+   While @error
    doublejump()
    attack()
    sleep(180)
-   middleTop2()
+   bound3()
 WEnd
 Send("{right up}")
+EndIf
 
    If isOFFCD($bloomcol, $bloomrow) Then
 	  bloom()
@@ -206,22 +239,32 @@ Send("{right up}")
 
 
 rightTop()
-While @error
-   moveLeft(10)
+If Not @error Then
+   Send("{left down}")
+   setup()
+   While @error
    dropdown()
+   Send($plummetButton)
    attack()
    sleep(200)
-   rightTop()
+   setup()
 WEnd
+Send("{left up}")
+EndIf
 
 dropdownLeft()
-While @error
-   moveLeft(10)
+If Not @error Then
+   Send("{left down}")
+   setup()
+   While @error
    dropdown()
+   Send($plummetButton)
    attack()
    sleep(200)
-   dropdownLeft()
+   setup()
 WEnd
+Send("{left up}")
+EndIf
 WEnd
 EndFunc
 
@@ -239,7 +282,7 @@ Func setup()
 EndFunc
 
 Func leftBottom()
-   $yellowPixel = PixelSearch(67, 141, 83, 154, 0xFFdd44, 10)
+   $yellowPixel = PixelSearch(66, 141, 83, 154, 0xFFdd44, 10)
 EndFunc
 
 Func jumpUpRight()
@@ -272,6 +315,26 @@ EndFunc
 
 Func dropdownLeft()
    $yellowPixel = PixelSearch(62, 100, 189, 139, 0xFFdd44, 10)
+EndFunc
+
+Func bound1()
+   $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10)
+EndFunc
+
+Func bound2()
+   $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10)
+EndFunc
+
+Func bound3()
+   $yellowPixel = PixelSearch(176, 68, 189, 154, 0xFFdd44, 10)
+EndFunc
+
+Func pillar1()
+   $yellowPixel = PixelSearch(98, 95, 130, 154, 0xFFdd44, 10)
+EndFunc
+
+Func pillar2()
+   $yellowPixel = PixelSearch(132, 88, 160, 154, 0xFFdd44, 10)
 EndFunc
 
 ;	FUNCTIONS
