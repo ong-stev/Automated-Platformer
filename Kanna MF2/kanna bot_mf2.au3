@@ -451,6 +451,7 @@ EndIf
 		 $yellowPixel = PixelSearch(22, 74, 47, 83, 0xFFdd44, 10) ; (Platform 3 End)
 	  WEnd
 	  Send("{left up}")
+	  sleep(200)
    EndIf
 
    $yellowPixel = PixelSearch(9, 74, 24, 129, 0xFFdd44, 10) ; (Null 3)
@@ -461,7 +462,7 @@ EndIf
    $yellowPixel = PixelSearch(22, 74, 107, 83, 0xFFdd44, 10) ; (Platform 3 End)
    IF NOT @error Then
 	  teleport("down")
-	  sleep(200)
+	  sleep(300)
 	  attack()
 	  EndIf
 
@@ -471,7 +472,7 @@ EndIf
    $yellowPixel = PixelSearch(78, 91, 110, 115, 0xFFdd44, 10) ; (Boss)
 	  While @error
 		 teleport("right")
-		 sleep(200)
+		 sleep(300)
 		 attack()
 		 $yellowPixel = PixelSearch(78, 91, 110, 115, 0xFFdd44, 10) ; (Boss)
 		 WEnd
