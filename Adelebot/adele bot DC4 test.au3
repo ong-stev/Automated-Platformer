@@ -141,6 +141,7 @@ If Not @error Then
 		 upjumpL()
 		 sleep(200)
 		 rushM("right", "up")
+		 sleep(200)
 		 EndIf
    $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
 	  While @error
@@ -199,12 +200,12 @@ If Not @error Then
 $yellowPixel = PixelSearch(132, 103, 160, 139, 0xFFdd44, 10); middleNull2
 If Not @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
+   $yellowPixel = PixelSearch(66, 68, 189, 100, 0xFFdd44, 10); bound2 modified
 	  While @error
 		 upJumpR()
 		 attack()
 		 sleep(350)
-		 $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
+		 $yellowPixel = PixelSearch(66, 68, 189, 100, 0xFFdd44, 10); bound2 modified
 	  WEnd
 	  Send("{right up}")
    EndIf
@@ -230,12 +231,12 @@ If Not @error Then
 $yellowPixel = PixelSearch(132, 82, 160, 101, 0xFFdd44, 10); middleTop2
 If Not @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(176, 68, 189, 154, 0xFFdd44, 10); bound3
+   $yellowPixel = PixelSearch(163, 68, 189, 154, 0xFFdd44, 10); bound3
 	  While @error
 	     doublejumpH()
 		 attack()
 		 sleep(550)
-		 $yellowPixel = PixelSearch(176, 68, 189, 154, 0xFFdd44, 10); bound3
+		 $yellowPixel = PixelSearch(163, 68, 189, 154, 0xFFdd44, 10); bound3
 	  WEnd
 	  Send("{right up}")
    EndIf
@@ -247,14 +248,16 @@ If Not @error Then
 	  While @error
 		 dropdown()
 		 sleep(200)
+		 Send($jumpbutton)
+		 sleep(50)
 		 attack()
-		 sleep(200)
+		 sleep(500)
 		 $yellowPixel = PixelSearch(85, 141, 189, 154, 0xFFdd44, 10); setup
 	  WEnd
 	  Send("{left up}")
    EndIf
 
-#comments-start
+
 $yellowPixel = PixelSearch(162, 100, 189, 139, 0xFFdd44, 10); dropdownLeft
 If Not @error Then
    Send("{left down}")
@@ -262,15 +265,14 @@ If Not @error Then
 	  While @error
 		 dropdown()
 		 sleep(200)
-		 Send($jumpButton)
+		 Send($jumpbutton)
 		 sleep(50)
 		 attack()
-		 sleep(200)
+		 sleep(500)
 		 $yellowPixel = PixelSearch(85, 141, 189, 154, 0xFFdd44, 10); setup
 	  WEnd
 	  Send("{left up}")
    EndIf
-#comments-End
 WEnd
 EndFunc
 
@@ -296,13 +298,12 @@ Func startScript()
    $start = True
 EndFunc
 
-Func dropdown($sleeptime = 0)
+Func dropdown()
    Send("{down down}")
    sleep(100)
    send($jumpbutton)
    sleep(150)
    send("{down up}")
-   Sleep($sleeptime)
 EndFunc
 
 Func isOffCD($col, $row)
