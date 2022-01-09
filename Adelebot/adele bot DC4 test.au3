@@ -128,13 +128,13 @@ While TimerDiff($totemTimer) < 60000
 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
-   $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+   $yellowPixel = PixelSearch(66, 84, 96, 154, 0xFFdd44, 10); bound1
 	  While @error
 	     doublejumpH()
 		 attack()
 		 huntingdecree()
 		 sleep(550)
-		 $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+		 $yellowPixel = PixelSearch(66, 84, 96, 154, 0xFFdd44, 10); bound1
 	  WEnd
 	  Send("{left up}")
    EndIf
@@ -285,13 +285,13 @@ Func DC4Collect()
 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
-   $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+   $yellowPixel = PixelSearch(66, 84, 96, 154, 0xFFdd44, 10); bound1
 	  While @error
 	     doublejumpH()
 		 attack()
 		 huntingdecree()
 		 sleep(550)
-		 $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+		 $yellowPixel = PixelSearch(66, 84, 96, 154, 0xFFdd44, 10); bound1
 	  WEnd
 	  Send("{left up}")
    EndIf
