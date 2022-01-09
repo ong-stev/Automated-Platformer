@@ -61,8 +61,8 @@ Dim $totemButton = "'"
 Dim $huntingdecreeButton = "a"
 
 ;   MINIMAP BOXES
-;setup = $yellowPixel = PixelSearch(102, 141, 189, 154, 0xFFdd44, 10); setup
-;leftBottom = $yellowPixel = PixelSearch(66, 141, 100, 154, 0xFFdd44, 10); leftBottom
+;setup = $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
+;leftBottom = $yellowPixel = PixelSearch(66, 141, 107, 154, 0xFFdd44, 10); leftBottom
 ;jumpUpRight = $yellowPixel = PixelSearch(63, 113, 96, 139, 0xFFdd44, 10); jumpupRight
 ;leftTop = $yellowPixel = PixelSearch(66, 84, 96, 111, 0xFFdd44, 10); leftTop
 ;middleTop = $yellowPixel = PixelSearch(98, 95, 130, 108, 0xFFdd44, 10); middleTop
@@ -125,7 +125,7 @@ EndFunc
 Func DC4combo()
 While TimerDiff($totemTimer) < 60000
 
-$yellowPixel = PixelSearch(102, 141, 189, 154, 0xFFdd44, 10); setup
+$yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
    $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
@@ -139,7 +139,7 @@ If Not @error Then
 	  Send("{left up}")
    EndIf
 
-$yellowPixel = PixelSearch(66, 141, 100, 154, 0xFFdd44, 10); leftBottom
+$yellowPixel = PixelSearch(66, 141, 107, 154, 0xFFdd44, 10); leftBottom
 If Not @error Then
    Send("{right down}")
 	  If isOffCD($impalecol, $impalerow) Then
@@ -249,7 +249,7 @@ If Not @error Then
 $yellowPixel = PixelSearch(162, 68, 189, 98, 0xFFdd44, 10); rightTop
 If Not @error Then
    Send("{left down}")
-   $yellowPixel = PixelSearch(102, 141, 189, 154, 0xFFdd44, 10); setup
+   $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 	  While @error
 		 dropdown()
 		 sleep(200)
@@ -257,7 +257,7 @@ If Not @error Then
 		 sleep(50)
 		 attack()
 		 sleep(500)
-		 $yellowPixel = PixelSearch(102, 141, 189, 154, 0xFFdd44, 10); setup
+		 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 	  WEnd
 	  Send("{left up}")
    EndIf
@@ -266,7 +266,7 @@ If Not @error Then
 $yellowPixel = PixelSearch(162, 100, 189, 139, 0xFFdd44, 10); dropdownLeft
 If Not @error Then
    Send("{left down}")
-   $yellowPixel = PixelSearch(102, 141, 189, 154, 0xFFdd44, 10); setup
+   $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 	  While @error
 		 dropdown()
 		 sleep(200)
@@ -274,7 +274,7 @@ If Not @error Then
 		 sleep(50)
 		 attack()
 		 sleep(500)
-		 $yellowPixel = PixelSearch(102, 141, 189, 154, 0xFFdd44, 10); setup
+		 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 	  WEnd
 	  Send("{left up}")
    EndIf
@@ -282,7 +282,7 @@ WEnd
 EndFunc
 
 Func DC4Collect()
-$yellowPixel = PixelSearch(102, 141, 189, 154, 0xFFdd44, 10); setup
+$yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
    $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
@@ -296,7 +296,7 @@ If Not @error Then
 	  Send("{left up}")
    EndIf
 
-$yellowPixel = PixelSearch(66, 141, 100, 154, 0xFFdd44, 10); leftBottom
+$yellowPixel = PixelSearch(66, 141, 107, 154, 0xFFdd44, 10); leftBottom
 If Not @error Then
    Send("{right down}")
 	  If isOffCD($impalecol, $impalerow) Then
@@ -459,6 +459,8 @@ If Not @error Then
 		 $yellowPixel = PixelSearch(66, 113, 96, 154, 0xFFdd44, 10); collect3
 	  WEnd
 	  Send("{left up}")
+	  jumpattackR()
+	  sleep(400)
    EndIf
 EndFunc
 
