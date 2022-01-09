@@ -71,7 +71,7 @@ Dim $huntingdecreeButton = "a"
 ;middleNull2 = $yellowPixel = PixelSearch(132, 103, 160, 139, 0xFFdd44, 10); middleNull2
 ;rightTop = $yellowPixel = PixelSearch(162, 68, 189, 98, 0xFFdd44, 10); rightTop
 ;dropdownLeft = $yellowPixel = PixelSearch(162, 100, 189, 139, 0xFFdd44, 10); dropdownLeft
-;bound1 = $yellowPixel = PixelSearch(66, 84, 108, 154, 0xFFdd44, 10); bound1
+;bound1 = $yellowPixel = PixelSearch(66, 84, 78, 154, 0xFFdd44, 10); bound1
 ;bound2 = $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
 ;bound3 = $yellowPixel = PixelSearch(176, 68, 189, 154, 0xFFdd44, 10); bound3
 ;pillar1 = $yellowPixel = PixelSearch(98, 95, 130, 154, 0xFFdd44, 10); pillar1
@@ -128,13 +128,13 @@ While TimerDiff($totemTimer) < 60000
 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
-   $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+   $yellowPixel = PixelSearch(66, 84, 78, 154, 0xFFdd44, 10); bound1
 	  While @error
 	     doublejumpH()
 		 attack()
 		 huntingdecree()
 		 sleep(550)
-		 $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+		 $yellowPixel = PixelSearch(66, 84, 78, 154, 0xFFdd44, 10); bound1
 	  WEnd
 	  Send("{left up}")
    EndIf
@@ -285,13 +285,13 @@ Func DC4Collect()
 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
-   $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+   $yellowPixel = PixelSearch(66, 84, 78, 154, 0xFFdd44, 10); bound1
 	  While @error
 	     doublejumpH()
 		 attack()
 		 huntingdecree()
 		 sleep(550)
-		 $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+		 $yellowPixel = PixelSearch(66, 84, 78, 154, 0xFFdd44, 10); bound1
 	  WEnd
 	  Send("{left up}")
    EndIf
