@@ -128,13 +128,21 @@ While TimerDiff($totemTimer) < 60000
 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
+<<<<<<< HEAD
    $yellowPixel = PixelSearch(66, 84, 108, 154, 0xFFdd44, 10); bound1
+=======
+   $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+>>>>>>> parent of 3ca8c1b (minor update #3)
 	  While @error
 	     doublejumpH()
 		 attack()
 		 huntingdecree()
 		 sleep(550)
+<<<<<<< HEAD
 		 $yellowPixel = PixelSearch(66, 84, 108, 154, 0xFFdd44, 10); bound1
+=======
+		 $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+>>>>>>> parent of 3ca8c1b (minor update #3)
 	  WEnd
 	  Send("{left up}")
    EndIf
@@ -285,13 +293,21 @@ Func DC4Collect()
 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 If Not @error Then
    Send("{left down}")
+<<<<<<< HEAD
    $yellowPixel = PixelSearch(66, 84, 108, 154, 0xFFdd44, 10); bound1
+=======
+   $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+>>>>>>> parent of 3ca8c1b (minor update #3)
 	  While @error
 	     doublejumpH()
 		 attack()
 		 huntingdecree()
 		 sleep(550)
+<<<<<<< HEAD
 		 $yellowPixel = PixelSearch(66, 84, 108, 154, 0xFFdd44, 10); bound1
+=======
+		 $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10); bound1
+>>>>>>> parent of 3ca8c1b (minor update #3)
 	  WEnd
 	  Send("{left up}")
    EndIf
