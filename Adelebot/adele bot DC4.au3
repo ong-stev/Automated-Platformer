@@ -61,21 +61,21 @@ Dim $totemButton = "'"
 Dim $huntingdecreeButton = "a"
 
 ;   MINIMAP BOXES
-Dim $setup = $yellowPixel = PixelSearch(85, 141, 189, 154, 0xFFdd44, 10)
-Dim $leftBottom = $yellowPixel = PixelSearch(66, 141, 83, 154, 0xFFdd44, 10)
-Dim $jumpUpRight = $yellowPixel = PixelSearch(63, 113, 96, 139, 0xFFdd44, 10)
-Dim $leftTop = $yellowPixel = PixelSearch(66, 84, 96, 111, 0xFFdd44, 10)
-Dim $middleTop = $yellowPixel = PixelSearch(98, 95, 130, 108, 0xFFdd44, 10)
-Dim $middleTop2 = $yellowPixel = PixelSearch(132, 82, 160, 101, 0xFFdd44, 10)
-Dim $middleNull = $yellowPixel = PixelSearch(98, 110, 130, 139, 0xFFdd44, 10)
-Dim $middleNull2 = $yellowPixel = PixelSearch(132, 103, 160, 139, 0xFFdd44, 10)
-Dim $rightTop = $yellowPixel = PixelSearch(162, 68, 189, 98, 0xFFdd44, 10)
-Dim $dropdownLeft = $yellowPixel = PixelSearch(62, 100, 189, 139, 0xFFdd44, 10)
-Dim $bound1 = $yellowPixel = PixelSearch(66, 84, 83, 154, 0xFFdd44, 10)
-Dim $bound2 = $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10)
-Dim $bound3 = $yellowPixel = PixelSearch(176, 68, 189, 154, 0xFFdd44, 10)
-Dim $pillar1 = $yellowPixel = PixelSearch(98, 95, 130, 154, 0xFFdd44, 10)
-Dim $pillar2 = $yellowPixel = PixelSearch(132, 88, 160, 154, 0xFFdd44, 10)
+Global $setup[4] = [85, 141, 189, 154]
+Global $leftBottom[4] = [66, 141, 83, 154]
+Global $jumpUpRight[4] = [63, 113, 96, 139]
+Global $leftTop[4] = [66, 84, 96, 111]
+Global $middleTop[4] = [98, 95, 130, 108]
+Global $middleTop2[4] = [132, 82, 160, 101]
+Global $middleNull[4] = [98, 110, 130, 139]
+Global $middleNull2[4] = [132, 103, 160, 139]
+Global $rightTop[4]= [162, 68, 189, 98]
+Global $dropdownLeft[4] = [162, 100, 189, 139]
+Global $bound1[4] =  [66, 84, 83, 154]
+Global $bound2[4] = [66, 68, 189, 112]
+Global $bound3[4] = [176, 68, 189, 154]
+Global $pillar1[4] = [98, 95, 130, 154]
+Global $pillar2[4] = [132, 88, 160, 154]
 
 Global $totemTimer
 Global $collectTimer
@@ -83,8 +83,9 @@ Global $collectTimer
 
 consolewrite("script activated" & @LF)
 Func test()
-   SSS1collect()
-   SSS1collect()
+   upjumpR()
+   sleep(100)
+   rushM("right","up")
 EndFunc
 
 While 1
@@ -117,31 +118,33 @@ EndFunc
 Func DC4combo()
 While TimerDiff($totemTimer) < 60000
 
-Send($setup)
+playerSearch($setup)
 If Not @error Then
    Send("{left down}")
-   Send($bound1)
+   playerSearch($bound1)
 	  While @error
 		 doublejump()
 		 attack()
 		 sleep(180)
-		 Send($bound1)
+		 playerSearch($bound1)
 	  WEnd
 	  Send("{left up}")
    EndIf
 
-Send($leftBottom)
+playerSearch($leftBottom)
 If Not @error Then
    Send("{right down}")
-   Send($bound2)
+   playerSearch($bound2)
 	  While @error
 		 If isOffCD($impalecol, impalerow) Then
-			rushM(right, up)
+			upjumpR()
+			sleep(100)
+			rushM("right", "up")
 		 EndIf
 		 upJumpR()
 		 attack()
-		 sleep(800)
-		 Send($bound2)
+		 sleep(350)
+		 playerSearch($bound2)
 	  WEnd
 	  Send("{right up}")
    EndIf
@@ -153,15 +156,15 @@ If Not @error Then
    EndIf
 #comments-end
 
-Send($jumpupRight)
+playerSearch($jumpupRight)
 If Not @error Then
    Send("{right down}")
    Send($bound2)
 	  While @error
 		 upJumpR()
 		 attack()
-		 sleep(800)
-		 Send($bound2)
+		 sleep(350)
+		 playerSearch($bound2)
 	  WEnd
 	  Send("{right up}")
    EndIf
@@ -173,47 +176,51 @@ If Not @error Then
    EndIf
 #comments-end
 
-Send($leftTop)
+playerSearch($leftTop)
 If Not @error Then
    Send("{right down}")
-   Send($pillar1)
+   playerSearch($pillar1)
 	  While @error
 		 doublejump()
 		 attack()
 		 sleep(180)
-		 Send($pillar1)
+		 playerSearch($pillar1)
 	  WEnd
 	  Send("{right up}")
    EndIf
 
-Send($middleNull)
+playerSearch($middleNull)
 If Not @error Then
    Send("{right down}")
-   Send($bound2)
+   playerSearch($bound2)
 	  While @error
 		 If isOffCD($impalecol, impalerow) Then
-			rushM(right, up)
+			upjumpR()
+			sleep(100)
+			rushM("right", "up")
 		 EndIf
 		 upJumpR()
 		 attack()
-		 sleep(800)
-		 Send($bound2)
+		 sleep(350)
+		 playerSearch($bound2)
 	  WEnd
 	  Send("{right up}")
    EndIf
 
-Send($middleNull2)
+playerSearch($middleNull2)
 If Not @error Then
    Send("{right down}")
-   Send($bound2)
+   playerSearch($bound2)
 	  While @error
 		 If isOffCD($impalecol, impalerow) Then
-			rushM(right, up)
+			upjumpR()
+			sleep(100)
+			rushM("right", "up")
 		 EndIf
 		 upJumpR()
 		 attack()
-		 sleep(800)
-		 Send($bound2)
+		 sleep(350)
+		 playerSearch($bound2)
 	  WEnd
 	  Send("{right up}")
    EndIf
@@ -225,28 +232,28 @@ If Not @error Then
    EndIf
 #comments-end
 
-Send($middleTop)
+playerSearch($middleTop)
 If Not @error Then
    Send("{right down}")
-   Send($pillar2)
+   playerSearch($pillar2)
 	  While @error
 		 doublejump()
 		 attack()
 		 sleep(180)
-		 Send($pillar2)
+		 playerSearch($pillar2)
 	  WEnd
 	  Send("{right up}")
    EndIf
 
-Send($middleTop2)
+playerSearch($middleTop2)
 If Not @error Then
    Send("{right down}")
-   Send($bound3)
+   playerSearch($bound3)
 	  While @error
 		 doublejump()
 		 attack()
 		 sleep(180)
-		 Send($bound3)
+		 playerSearch($bound3)
 	  WEnd
 	  Send("{right up}")
    EndIf
@@ -259,30 +266,30 @@ If Not @error Then
 #comments-end
 
 
-Send($rightTop)
+playerSearch($rightTop)
 If Not @error Then
    Send("{left down}")
-   Send($setup)
+   playerSearch($setup)
 	  While @error
 		 dropdown()
 		 Send($plummetButton)
 		 attack()
 		 sleep(200)
-		 Send($setup)
+		 playerSearch($setup)
 	  WEnd
 	  Send("{left up}")
    EndIf
 
-Send($dropdownLeft)
+playerSearch($dropdownLeft)
 If Not @error Then
    Send("{left down}")
-   Send($setup)
+   playerSearch($setup)
 	  While @error
 		 dropdown()
 		 Send($plummetButton)
 		 attack()
 		 sleep(200)
-		 Send($setup)
+		 playerSearch($setup)
 	  WEnd
 	  Send("{left up}")
    EndIf
@@ -290,6 +297,10 @@ WEnd
 EndFunc
 
 ;	FUNCTIONS
+Func playerSearch($box)
+   return false if @error
+   PixelSearch($box[0], $box[1], $box[2], $box[3], 0xFFdd44, 10)
+EndFunc
 
 Func setPause()
    $pause = NOT $pause
@@ -407,26 +418,26 @@ EndFunc
 
 Func rush($direction)
    Send("{" & $direction & " down}")
-   sleep(100)
+   sleep(10)
 	  Send($impaleButton)
-	  sleep(675)
-	  Send($rushButton)
 	  sleep(300)
+	  Send($rushButton)
+	  sleep(500)
    Send("{" & $direction & " up}")
-   sleep(100)
+   sleep(10)
 EndFunc
 
 Func rushM($direction, $direction2)
    Send("{" & $direction & " down}")
    Send("{" & $direction2 & " down}")
-   sleep(100)
+   sleep(10)
 	  Send($impaleButton)
-	  sleep(700)
-	  Send($rushButton)
 	  sleep(300)
+	  Send($rushButton)
+	  sleep(500)
    Send("{" & $direction & " up}")
    Send("{" & $direction2 & " up}")
-   sleep(100)
+   sleep(10)
 EndFunc
 
 Func totem()
