@@ -247,6 +247,8 @@ If Not @error Then
 	  While @error
 		 dropdown()
 		 sleep(200)
+		 attack()
+		 sleep(200)
 		 $yellowPixel = PixelSearch(85, 141, 189, 154, 0xFFdd44, 10); setup
 	  WEnd
 	  Send("{left up}")
