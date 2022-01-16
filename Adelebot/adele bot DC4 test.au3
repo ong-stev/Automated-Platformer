@@ -440,6 +440,7 @@ $yellowPixel = PixelSearch(132, 121, 189, 139, 0xFFdd44, 10); collect1
 If Not @error Then
    Send("{left down}")
    doublejumpH()
+   doublejump()
    $yellowPixel = PixelSearch(66, 128, 106, 154, 0xFFdd44, 10); collect2
 	  While @error
 		 sleep(100)
