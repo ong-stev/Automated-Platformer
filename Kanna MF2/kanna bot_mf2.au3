@@ -15,52 +15,45 @@ $pause = False
 Dim $leftdown = False
 Dim $rightdown = True
 
-Dim $yukiRow = 0
-Dim $yukiCol = 3
+Dim $yukiRow = 1
+Dim $yukiCol = 2
 Dim $domainRow = 1
-Dim $domainCol = 1
+Dim $domainCol = 3
 Dim $kishRow = 1
-Dim $kishCol = 2
-Dim $hsrow = 1
-Dim $hscol = 8
-Dim $ninetailsRow = 0
-Dim $ninetailsCol = 2
-Dim $sharpEyesRow = 1
-Dim $sharpEyesCol = 6
+Dim $kishCol = 6
+Dim $ninetailsRow = 1
+Dim $ninetailsCol = 5
 Dim $vanquisherRow = 1
-Dim $vanquisherCol = 0
-Dim $yakshaRow = 0
-Dim $yakshaCol = 8
-Dim $tenguRow = 0
-Dim $tenguCol = 0
-Dim $exorcistRow = 1
-Dim $exorcistCol = 5
+Dim $vanquisherCol = 4
+Dim $yakshaRow = 1
+Dim $yakshaCol = 7
+Dim $exorcistRow = 0
+Dim $exorcistCol = 6
 Dim $onilordRow = 0
-Dim $onilordCol = 8
-Dim $balanceRow = 1
-Dim $balanceCol = 4
-Dim $arachnidRow = 1
-Dim $arachnidCol = 9
+Dim $onilordCol = 5
+Dim $balanceRow = 0
+Dim $balanceCol = 9
+Dim $arachnidRow = 0
+Dim $arachnidCol = 2
 
 Dim $shikigamiButton = "a"
 Dim $yakshaButton = "x"
 Dim $kishbutton = "f"
 Dim $exorcistButton = "q"
 Dim $hakuButton = "{PGDN}"
-Dim $HSButton = ";"
-Dim $YukiButton = "3";
+Dim $YukiButton = "{PGUP}"
 Dim $DomainButton = "{DEL}"
 Dim $shikigamiCharmButton = "c"
 Dim $teleportButton = "d"
 Dim $jumpButton = "w"
-Dim $ninetailsButton = "2"
+Dim $ninetailsButton = "b"
 Dim $vanquisherButton = "e"
-Dim $sharpEyesButton = "'"
+Dim $maplewarriorButton = "'"
 Dim $balanceButton = "z"
 Dim $ccButton = ","
 Dim $tenguButton = "v"
 Dim $onilordButton = "6"
-Dim $arachnidButton = "b"
+Dim $arachnidButton = "3"
 
 Global $yakshaTimer
 Global $collectTimer
@@ -77,8 +70,7 @@ While 1
 		 Send($hakuButton)
 		 sleep(450)
 
-	  If isOffCD($sharpEyesCol, $sharpEyesRow) Then
-		 send($sharpeyesButton)
+		 send($maplewarriorButton)
 		 sleep(100)
 	  EndIf
 
