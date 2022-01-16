@@ -72,12 +72,11 @@ While 1
 
 		 send($maplewarriorButton)
 		 sleep(100)
-	  EndIf
 
 	  MF2()
 	  $count += 1
-   EndIf
-   WEnd
+	  EndIf
+ WEnd
 
 Func MF2()
    For $i = 3 To 1 Step -1
@@ -477,10 +476,6 @@ EndIf
 	  sleep(200)
    EndIf
    EndFunc
-
-
-
-
 
 
 
