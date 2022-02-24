@@ -14,7 +14,6 @@ Dim $looptime = 30
 $pause = False
 Dim $leftdown = False
 Dim $rightdown = True
-
 Dim $yukiRow = 1
 Dim $yukiCol = 2
 Dim $domainRow = 1
@@ -144,6 +143,7 @@ Func MF2Setup()
 		 $yellowPixel = PixelSearch(27, 116, 58, 126, 0xFFdd44, 10) ; (Kish)
 	  WEnd
 	  kish()
+	  sleep(300)
    EndIf
 EndIf
 
@@ -437,12 +437,12 @@ EndIf
 	  $yellowPixel = PixelSearch(9, 74, 47, 128, 0xFFdd44, 10) ; (Platform 3 End)
 	  While @error
 		 teleport("left")
-		 sleep(200)
+		 sleep(250)
 		 attack()
 		 $yellowPixel = PixelSearch(22, 74, 47, 83, 0xFFdd44, 10) ; (Platform 3 End)
 	  WEnd
 	  Send("{left up}")
-	  sleep(200)
+	  sleep(500)
    EndIf
 
    $yellowPixel = PixelSearch(9, 74, 24, 129, 0xFFdd44, 10) ; (Null 3)
@@ -453,12 +453,13 @@ EndIf
    $yellowPixel = PixelSearch(22, 74, 107, 83, 0xFFdd44, 10) ; (Platform 3 End)
    IF NOT @error Then
 	  teleport("down")
-	  sleep(300)
+	  sleep(450)
 	  attack()
 	  EndIf
 
    $yellowPixel = PixelSearch(24, 91, 94, 100, 0xFFdd44, 10) ; (Platform 4)
    If NOT @error Then
+	  sleep(100)
    Send("{right down}")
    $yellowPixel = PixelSearch(78, 91, 110, 115, 0xFFdd44, 10) ; (Boss)
 	  While @error
@@ -481,7 +482,7 @@ EndIf
 
 
 
-
+#comments-start
 
 Func MTS4()
    For $i = 3 To 1 Step -1
@@ -1241,6 +1242,23 @@ Func soul()
 	  attack()
    Next
    send("{left up}")
+EndFunc
+
+#comments-end
+Func close()
+   send("{left up}")
+   send("{right up}")
+   send("{up up}")
+   send("{down up}")
+   Exit
+EndFunc
+
+
+Func setPause()
+   $pause = NOT $pause
+   While $pause
+	  sleep(100)
+   Wend
 EndFunc
 
 Func startScript()

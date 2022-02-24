@@ -1,4 +1,4 @@
-#include<IE.au3>
+   #include<IE.au3>
 #include <Misc.au3>
 #RequireAdmin
 Opt('TrayIconDebug',1)

@@ -104,7 +104,6 @@ While 1
 Func DC4()
    DC4setup()
    DC4combo()
-   DC4collect()
 EndFunc
 
 Func DC4setup()
@@ -112,10 +111,12 @@ Func DC4setup()
 	  weaponaura()
 	  sleep(200)
    EndIf
+
    If isOFFCD($arachnidcol, $arachnidrow) Then
 	  arachnid()
 	  sleep(200)
    EndIf
+
    totem()
    Global $totemTimer = TimerInit()
    sleep(300)
@@ -248,6 +249,7 @@ If Not @error Then
 
 $yellowPixel = PixelSearch(162, 68, 189, 98, 0xFFdd44, 10); rightTop
 If Not @error Then
+   totem()
    Send("{left down}")
    $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 	  While @error
