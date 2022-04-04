@@ -250,11 +250,12 @@ If Not @error Then
 $yellowPixel = PixelSearch(162, 68, 189, 98, 0xFFdd44, 10); rightTop
 If Not @error Then
    totem()
+   sleep(400)
    Send("{left down}")
    $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
 	  While @error
 		 dropdown()
-		 sleep(200)
+		 sleep(250)
 		 Send($jumpbutton)
 		 sleep(50)
 		 attack()

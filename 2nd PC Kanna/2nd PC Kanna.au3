@@ -2,7 +2,6 @@
 #include <Misc.au3>
 #RequireAdmin
 Opt('TrayIconDebug',1)
-
 HotKeySet("{F10}" , "close")
 HotKeySet("{F11}", "startScript")
 HotKeySet("{F9}", "setPause")
@@ -39,7 +38,6 @@ Dim $onilordRow = 0
 Dim $onilordCol = 8
 Dim $balanceRow = 1
 Dim $balanceCol = 4
-
 Dim $shikigamiButton = "a"
 Dim $yakshaButton = "x"
 Dim $kishbutton = "f"
