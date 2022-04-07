@@ -82,18 +82,18 @@ Dim $huntingdecreeButton = "a"
 ;collectmiddlePlat = $yellowPixel = PixelSearch(98, 126, 118, 139, 0xFFdd44, 10); collectmiddlePlat
 
 
-$yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
-$yellowPixel = PixelSearch(22, 68, 94, 86, 0xFFdd44, 10); leftTop
-$yellowPixel = PixelSearch(79, 88, 128, 109, 0xFFdd44, 10); midBot
-$yellowPixel = PixelSearch(96, 68, 128, 86, 0xFFdd44, 10); midTop
-$yellowPixel = PixelSearch(130, 68, 170, 86, 0xFFdd44, 10); rightTop
-$yellowPixel = PixelSearch(130, 88, 180, 89, 0xFFdd44, 10); rightBot
-$yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
-
-$yellowPixel = PixelSearch(22, 68, 55, 109, 0xFFdd44, 10); leftBound
-$yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
-$yellowPixel = PixelSearch(130, 68, 170, 109, 0xFFdd44, 10); rightBound
-$yellowPixel = PixelSearch(96, 68, 128, 109, 0xFFdd44, 10); middleCol
+;$yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
+;$yellowPixel = PixelSearch(22, 68, 94, 86, 0xFFdd44, 10); leftTop
+;$yellowPixel = PixelSearch(79, 88, 128, 109, 0xFFdd44, 10); midBot
+;$yellowPixel = PixelSearch(96, 68, 128, 86, 0xFFdd44, 10); midTop
+;$yellowPixel = PixelSearch(130, 68, 170, 86, 0xFFdd44, 10); rightTop
+;$yellowPixel = PixelSearch(130, 88, 180, 89, 0xFFdd44, 10); rightBot
+;$yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
+;
+;$yellowPixel = PixelSearch(22, 68, 55, 109, 0xFFdd44, 10); leftBound
+;$yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
+;$yellowPixel = PixelSearch(130, 68, 170, 109, 0xFFdd44, 10); rightBound
+;$yellowPixel = PixelSearch(96, 68, 128, 109, 0xFFdd44, 10); middleCol
 
 
 
@@ -142,7 +142,7 @@ EndFunc
 
 Func rls4Combo()
 While TimerDiff($totemTimer) < 60000
-$yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
+$yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
 If Not @error Then
 	Send("{left down}")
 	$yellowPixel = PixelSearch(22, 68, 55, 109, 0xFFdd44, 10); leftBound
