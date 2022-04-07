@@ -153,7 +153,6 @@ If Not @error Then
 			sleep(550)
 			$yellowPixel = PixelSearch(22, 68, 55, 109, 0xFFdd44, 10); leftBound
 		WEnd
-		Send()
 	  	Send("{left up}")
    EndIf
 
