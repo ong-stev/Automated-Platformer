@@ -180,25 +180,19 @@ If Not @error Then
 	doublejump()
 EndIf
 
-   If isOFFCD($legacycol,$legacyrow) Then
+   If isOFFCD($legacycol, $legacyrow) Then
       legacy()
-      sleep(200)
+      sleep(100)
       EndIf
 
    If isOffCD($lucidCol, $lucidRow) Then
       lucid()
-      sleep(200)
+      sleep(100)
       EndIf
 
 $yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
 If Not @error Then
    Send("{right down}")
-	  If isOffCD($impalecol, $impalerow) Then
-		upjumpL()
-		sleep(200)
-		rush("right")
-		sleep(200)
-		EndIf
 		$yellowPixel = PixelSearch(11, 63, 182, 96, 0xFFdd44, 10); topBound
 			While @error
 			upJumpR()
