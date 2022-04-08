@@ -223,7 +223,7 @@ EndIf
 
    If isOFFCD($bloomCol, $bloomRow) Then
       bloom()
-      sleep(400)
+      sleep(250)
    EndIf
 
 
@@ -483,7 +483,7 @@ Func bloom()
 	  Send($bloombutton)
 	  sleep(200)
    EndIf
-   sleep(200)
+   sleep(100)
 EndFunc
 
 Func plummet()
@@ -534,9 +534,9 @@ EndFunc
 Func legacy() ; buff
    If isOFFCD($legacycol, $legacyrow) Then
 	  Send($legacybutton)
-	  sleep(300)
+	  sleep(200)
    EndIf
-   sleep(200)
+   sleep(100)
 EndFunc
 
 Func divine()
@@ -544,7 +544,7 @@ Func divine()
       Send($divinewrathButton)
       sleep(200)
    WEnd
-   sleep(200)
+   sleep(100)
 EndFunc
 
 Func grandis()
@@ -552,7 +552,7 @@ Func grandis()
       Send($grandisButton)
       sleep(200)
    WEnd
-   sleep(200)
+   sleep(100)
 EndFunc
 
 Func weaponaura() ; buff
