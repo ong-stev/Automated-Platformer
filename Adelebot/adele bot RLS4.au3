@@ -304,7 +304,7 @@ If Not @error Then
 WEnd
 EndFunc
 
-If isOFFCD($ruinCol. $ruinRow) Then
+If isOFFCD($ruinCol, $ruinRow) Then
    ruin()
    sleep(200)
 EndIf
