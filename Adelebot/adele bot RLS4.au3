@@ -487,9 +487,9 @@ EndFunc
 Func bloom()
    If isOFFCD($bloomcol, $bloomrow) Then
 	  Send($bloombutton)
-	  sleep(350)
+	  sleep(200)
    EndIf
-   sleep(300)
+   sleep(200)
 EndFunc
 
 Func plummet()
@@ -516,9 +516,9 @@ EndFunc
 Func lucid()
    If isOFFCD($lucidCol, $lucidCol) Then
 	  Send($lucidButton)
-	  sleep(300)
+	  sleep(200)
    EndIf
-   sleep(200)
+   sleep(100)
 EndFunc
 
 Func ruin()
