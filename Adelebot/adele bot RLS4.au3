@@ -485,10 +485,10 @@ Func featherfloat()
 EndFunc
 
 Func bloom()
-   If isOFFCD($bloomcol, $bloomrow)
+   If isOFFCD($bloomcol, $bloomrow) Then
 	  Send($bloombutton)
 	  sleep(350)
-   WEnd
+   EndIf
    sleep(300)
 EndFunc
 
@@ -514,10 +514,10 @@ Func infinity()
 EndFunc
 
 Func lucid()
-   If isOFFCD($lucidCol, $lucidCol)
+   If isOFFCD($lucidCol, $lucidCol) Then
 	  Send($lucidButton)
 	  sleep(300)
-   WEnd
+   EndIf
    sleep(200)
 EndFunc
 
@@ -530,7 +530,7 @@ Func ruin()
 EndFunc
 
 Func storm()
-   If isOFFCD($stormcol, $stormrow)
+   If isOFFCD($stormcol, $stormrow) Then
 	  Send($stormbutton)
 	  sleep(300)
    EndIf
@@ -538,7 +538,7 @@ Func storm()
 EndFunc
 
 Func legacy() ; buff
-   If isOFFCD($legacycol, $legacyrow)
+   If isOFFCD($legacycol, $legacyrow) Then
 	  Send($legacybutton)
 	  sleep(300)
    EndIf
