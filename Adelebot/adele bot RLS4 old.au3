@@ -90,10 +90,11 @@ Dim $huntingdecreeButton = "a"
 ;$yellowPixel = PixelSearch(130, 88, 180, 89, 0xFFdd44, 10); rightBot
 ;$yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
 ;
-;$yellowPixel = PixelSearch(22, 68, 55, 109, 0xFFdd44, 10); leftBound
-;$yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
-;$yellowPixel = PixelSearch(130, 68, 170, 109, 0xFFdd44, 10); rightBound
-;$yellowPixel = PixelSearch(96, 68, 128, 109, 0xFFdd44, 10); middleCol
+;$yellowPixel = PixelSearch(12, 68, 67, 109, 0xFFdd44, 10); leftBound
+;$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+;$yellowPixel = PixelSearch(130, 68, 178, 109, 0xFFdd44, 10); rightBound
+;$yellowPixel = PixelSearch(96, 68, 188, 109, 0xFFdd44, 10); middleCol
+;$yellowPixel = PixelSearch(11, 63, 36, 109, 0xFFdd44, 10); leftNull
 
 
 
@@ -145,63 +146,56 @@ While TimerDiff($totemTimer) < 60000
 $yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
 If Not @error Then
 	Send("{left down}")
-	$yellowPixel = PixelSearch(22, 68, 55, 109, 0xFFdd44, 10); leftBound
+	$yellowPixel = PixelSearch(12, 68, 67, 109, 0xFFdd44, 10); leftBound
 		While @error
 	    	doublejumpH()
 			attack()
 			huntingdecree()
 			sleep(550)
-			$yellowPixel = PixelSearch(22, 68, 55, 109, 0xFFdd44, 10); leftBound
+			$yellowPixel = PixelSearch(12, 68, 67, 109, 0xFFdd44, 10); leftBound
 		WEnd
 	  	Send("{left up}")
    EndIf
+
+
+$yellowPixel = PixelSearch(11, 63, 36, 109, 0xFFdd44, 10); leftNull
+If Not @error Then
+	doublejump()
+EndIf
 
 $yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
 If Not @error Then
    Send("{right down}")
 	  If isOffCD($impalecol, $impalerow) Then
-		 upjumpL()
-		 sleep(200)
-		 rushM("right", "up")
-		 sleep(200)
-		 EndIf
-	$yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
-	  While @error
-		 upJumpR()
-		 attack()
-		 sleep(350)
-		 $yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
-	  WEnd
-	  Send("{right up}")
-   EndIf
+		upjumpL()
+		sleep(200)
+		rushM("right", "up")
+		sleep(200)
+		EndIf
+		$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+			While @error
+			upJumpR()
+			attack()
+			sleep(350)
+			$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+		WEnd
+		Send("{right up}")
+EndIf
 
 	If isOFFCD($reigncol, $reignrow) Then
 		reign()
 	  	sleep(300)
     EndIf
 
-$yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
-If Not @error Then
-	Send("{right down}")
-	$yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
-	While @error
-		upJumpR()
-		attack()
-		sleep(350)
-		$yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
-	WEnd
-	Send("{right up}")
-EndIf
-
 $yellowPixel = PixelSearch(22, 68, 94, 86, 0xFFdd44, 10); leftTop
 If Not @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(96, 68, 128, 109, 0xFFdd44, 10); middleCol
+   $yellowPixel = PixelSearch(96, 68, 188, 109, 0xFFdd44, 10); middleCol
 	  While @error
 	     doublejumpH()
 		 attack()
 		 sleep(550)
-		 $yellowPixel = PixelSearch(96, 68, 128, 109, 0xFFdd44, 10); middleCol
+		 $yellowPixel = PixelSearch(96, 68, 188, 109, 0xFFdd44, 10); middleCol
 	  WEnd
 	  Send("{right up}")
 EndIf
@@ -209,12 +203,12 @@ EndIf
 $yellowPixel = PixelSearch(79, 88, 128, 109, 0xFFdd44, 10); midBot
 If Not @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
+   $yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
 		While @error
 		upJumpR()
 		attack()
 		sleep(350)
-		$yellowPixel = PixelSearch(22, 68, 170, 79, 0xFFdd44, 10); topBound
+		$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
 	WEnd
 	Send("{right up}")
 EndIf
@@ -222,12 +216,12 @@ EndIf
 $yellowPixel = PixelSearch(96, 68, 128, 86, 0xFFdd44, 10); midTop
 If Not @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(130, 68, 170, 109, 0xFFdd44, 10); rightBound
+   $yellowPixel = PixelSearch(130, 68, 178, 109, 0xFFdd44, 10); rightBound
 	  While @error
 	    doublejumpH()
 		attack()
 		sleep(550)
-		$yellowPixel = PixelSearch(130, 68, 170, 109, 0xFFdd44, 10); rightBound
+		$yellowPixel = PixelSearch(130, 68, 178, 109, 0xFFdd44, 10); rightBound
 	WEnd
 	Send("{right up}")
 EndIf
