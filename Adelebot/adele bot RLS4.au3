@@ -39,6 +39,10 @@ Dim $weaponauraRow = 0
 Dim $weaponauraCol = 0
 Dim $arachnidRow = 1
 Dim $arachnidCol = 6
+Dim $divineRow = 0
+Dim $divineCol = 1
+Dim $grandisRow = 0
+Dim $grandisCol = 2
 
 Dim $cleaveButton = "e"
 Dim $impaleButton = "d"
@@ -59,6 +63,8 @@ Dim $jauntButton = "{ALT}"
 Dim $arachnidButton = "b"
 Dim $totemButton = "'"
 Dim $huntingdecreeButton = "a"
+Dim $divinewrathButton = "2"
+Dim $grandisButton = "3"
 
 ;   MINIMAP BOXES
 ;setup = $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
@@ -83,7 +89,7 @@ Dim $huntingdecreeButton = "a"
 
 
 ;$yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
-;$yellowPixel = PixelSearch(22, 68, 94, 86, 0xFFdd44, 10); leftTop
+;$yellowPixel = PixelSearch(22, 68, 94, 96, 0xFFdd44, 10); leftTop
 ;$yellowPixel = PixelSearch(79, 88, 128, 109, 0xFFdd44, 10); midBot
 ;$yellowPixel = PixelSearch(96, 68, 128, 86, 0xFFdd44, 10); midTop
 ;$yellowPixel = PixelSearch(130, 68, 170, 86, 0xFFdd44, 10); rightTop
@@ -91,7 +97,7 @@ Dim $huntingdecreeButton = "a"
 ;$yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
 ;
 ;$yellowPixel = PixelSearch(12, 68, 67, 109, 0xFFdd44, 10); leftBound
-;$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+;$yellowPixel = PixelSearch(11, 63, 182, 96, 0xFFdd44, 10); topBound
 ;$yellowPixel = PixelSearch(130, 68, 178, 109, 0xFFdd44, 10); rightBound
 ;$yellowPixel = PixelSearch(96, 68, 188, 109, 0xFFdd44, 10); middleCol
 ;$yellowPixel = PixelSearch(11, 63, 36, 109, 0xFFdd44, 10); leftNull
@@ -135,6 +141,17 @@ Func rls4Setup()
 	  sleep(200)
    EndIf
 
+   If isOFFCD($divineCol, $divineRow) Then
+      divine()
+      sleep(150)
+   EndIf
+
+   If isOFFCD($grandisCol, $grandisRow) Then
+      grandis()
+      sleep(150)
+   EndIf   
+
+
    totem()
    Global $totemTimer = TimerInit()
    sleep(300)
@@ -163,21 +180,31 @@ If Not @error Then
 	doublejump()
 EndIf
 
+   If isOFFCD($legacycol,$legacyrow) Then
+      legacy()
+      sleep(200)
+      EndIf
+
+   If isOffCD($lucidCol, $lucidRow) Then
+      lucid()
+      sleep(200)
+      EndIf
+
 $yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
 If Not @error Then
    Send("{right down}")
 	  If isOffCD($impalecol, $impalerow) Then
 		upjumpL()
 		sleep(200)
-		rushM("right", "up")
+		rush("right")
 		sleep(200)
 		EndIf
-		$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+		$yellowPixel = PixelSearch(11, 63, 182, 96, 0xFFdd44, 10); topBound
 			While @error
 			upJumpR()
 			attack()
 			sleep(350)
-			$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+			$yellowPixel = PixelSearch(11, 63, 182, 96, 0xFFdd44, 10); topBound
 		WEnd
 		Send("{right up}")
 EndIf
@@ -187,7 +214,7 @@ EndIf
 	  	sleep(300)
     EndIf
 
-$yellowPixel = PixelSearch(22, 68, 94, 86, 0xFFdd44, 10); leftTop
+$yellowPixel = PixelSearch(22, 68, 94, 96, 0xFFdd44, 10); leftTop
 If Not @error Then
    Send("{right down}")
    $yellowPixel = PixelSearch(96, 68, 188, 109, 0xFFdd44, 10); middleCol
@@ -200,15 +227,21 @@ If Not @error Then
 	  Send("{right up}")
 EndIf
 
+   If isOFFCD($bloomCol, $bloomRow) Then
+      bloom()
+      sleep(400)
+   EndIf
+
+
 $yellowPixel = PixelSearch(79, 88, 128, 109, 0xFFdd44, 10); midBot
 If Not @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+   $yellowPixel = PixelSearch(11, 63, 182, 96, 0xFFdd44, 10); topBound
 		While @error
 		upJumpR()
 		attack()
 		sleep(350)
-		$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
+		$yellowPixel = PixelSearch(11, 63, 182, 96, 0xFFdd44, 10); topBound
 	WEnd
 	Send("{right up}")
 EndIf
@@ -251,6 +284,8 @@ If Not @error Then
 EndIf
 
 
+
+
 $yellowPixel = PixelSearch(130, 88, 180, 89, 0xFFdd44, 10); rightBot
 If Not @error Then
    Send("{left down}")
@@ -269,372 +304,12 @@ If Not @error Then
 WEnd
 EndFunc
 
-;~ Func DC4()
-;~    DC4setup()
-;~    DC4combo()
-;~ EndFunc
-
-;~ Func DC4setup()
-;~    If isOFFCD($weaponauracol, $weaponaurarow) Then
-;~ 	  weaponaura()
-;~ 	  sleep(200)
-;~    EndIf
-
-;~    If isOFFCD($arachnidcol, $arachnidrow) Then
-;~ 	  arachnid()
-;~ 	  sleep(200)
-;~    EndIf
-
-;~    totem()
-;~    Global $totemTimer = TimerInit()
-;~    sleep(300)
-
-;~ EndFunc
-
-;~ Func DC4combo()
-;~ While TimerDiff($totemTimer) < 60000
-
-;~ $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
-;~ If Not @error Then
-;~    Send("{left down}")
-;~    $yellowPixel = PixelSearch(63, 84, 70, 154, 0xFFdd44, 10); bound1
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 huntingdecree()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(63, 84, 70, 154, 0xFFdd44, 10); bound1
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(66, 141, 107, 154, 0xFFdd44, 10); leftBottom
-;~ If Not @error Then
-;~    Send("{right down}")
-;~ 	  If isOffCD($impalecol, $impalerow) Then
-;~ 		 upjumpL()
-;~ 		 sleep(200)
-;~ 		 rushM("right", "up")
-;~ 		 sleep(200)
-;~ 		 EndIf
-;~    $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~    If isOFFCD($reigncol, $reignrow) Then
-;~ 	  reign()
-;~ 	  sleep(300)
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(63, 113, 96, 139, 0xFFdd44, 10); jumpupRight
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(66, 84, 96, 111, 0xFFdd44, 10); leftTop
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(98, 95, 130, 154, 0xFFdd44, 10); pillar1
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(98, 95, 130, 154, 0xFFdd44, 10); pillar1
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(98, 110, 130, 139, 0xFFdd44, 10); middleNull
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(132, 103, 160, 139, 0xFFdd44, 10); middleNull2
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(66, 68, 189, 100, 0xFFdd44, 10); bound2 modified
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 100, 0xFFdd44, 10); bound2 modified
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~    If isOFFCD($infinitycol, $infinityrow) Then
-;~ 	  infinity()
-;~ 	  sleep(500)
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(98, 95, 130, 108, 0xFFdd44, 10); middleTop
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(132, 88, 160, 154, 0xFFdd44, 10); pillar2
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(132, 88, 160, 154, 0xFFdd44, 10); pillar2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(132, 82, 160, 101, 0xFFdd44, 10); middleTop2
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(163, 68, 189, 154, 0xFFdd44, 10); bound3
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(163, 68, 189, 154, 0xFFdd44, 10); bound3
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(162, 68, 189, 98, 0xFFdd44, 10); rightTop
-;~ If Not @error Then
-;~    totem()
-;~    sleep(400)
-;~    Send("{left down}")
-;~    $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
-;~ 	  While @error
-;~ 		 dropdown()
-;~ 		 sleep(250)
-;~ 		 Send($jumpbutton)
-;~ 		 sleep(50)
-;~ 		 attack()
-;~ 		 sleep(500)
-;~ 		 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~    EndIf
+If isOFFCD($ruinCol. $ruinRow) Then
+   ruin()
+   sleep(200)
+EndIf
 
 
-;~ $yellowPixel = PixelSearch(162, 100, 189, 139, 0xFFdd44, 10); dropdownLeft
-;~ If Not @error Then
-;~    Send("{left down}")
-;~    $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
-;~ 	  While @error
-;~ 		 dropdown()
-;~ 		 sleep(200)
-;~ 		 Send($jumpbutton)
-;~ 		 sleep(50)
-;~ 		 attack()
-;~ 		 sleep(500)
-;~ 		 $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~    EndIf
-;~ WEnd
-;~ EndFunc
-
-;~ Func DC4Collect()
-;~ $yellowPixel = PixelSearch(109, 141, 189, 154, 0xFFdd44, 10); setup
-;~ If Not @error Then
-;~    Send("{left down}")
-;~    $yellowPixel = PixelSearch(63, 84, 70, 154, 0xFFdd44, 10); bound1
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 huntingdecree()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(63, 84, 70, 154, 0xFFdd44, 10); bound1
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(66, 141, 107, 154, 0xFFdd44, 10); leftBottom
-;~ If Not @error Then
-;~    Send("{right down}")
-;~ 	  If isOffCD($impalecol, $impalerow) Then
-;~ 		 upjumpL()
-;~ 		 sleep(200)
-;~ 		 rushM("right", "up")
-;~ 		 sleep(200)
-;~ 		 EndIf
-;~    $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~    If isOFFCD($reigncol, $reignrow) Then
-;~ 	  reign()
-;~ 	  sleep(300)
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(63, 113, 96, 139, 0xFFdd44, 10); jumpupRight
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(66, 84, 96, 111, 0xFFdd44, 10); leftTop
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(98, 95, 130, 154, 0xFFdd44, 10); pillar1
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(98, 95, 130, 154, 0xFFdd44, 10); pillar1
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(98, 110, 130, 139, 0xFFdd44, 10); middleNull
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 112, 0xFFdd44, 10); bound2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(132, 103, 160, 139, 0xFFdd44, 10); middleNull2
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(66, 68, 189, 100, 0xFFdd44, 10); bound2 modified
-;~ 	  While @error
-;~ 		 upJumpR()
-;~ 		 attack()
-;~ 		 sleep(350)
-;~ 		 $yellowPixel = PixelSearch(66, 68, 189, 100, 0xFFdd44, 10); bound2 modified
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~    If isOFFCD($infinitycol, $infinityrow) Then
-;~ 	  infinity()
-;~ 	  sleep(500)
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(98, 95, 130, 108, 0xFFdd44, 10); middleTop
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(132, 88, 160, 154, 0xFFdd44, 10); pillar2
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(132, 88, 160, 154, 0xFFdd44, 10); pillar2
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(132, 82, 160, 101, 0xFFdd44, 10); middleTop2
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(163, 68, 189, 154, 0xFFdd44, 10); bound3
-;~ 	  While @error
-;~ 	     doublejumpH()
-;~ 		 attack()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(163, 68, 189, 154, 0xFFdd44, 10); bound3
-;~ 	  WEnd
-;~ 	  Send("{right up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(162, 68, 189, 98, 0xFFdd44, 10); rightTop
-;~ If Not @error Then
-;~    Send("{left down}")
-;~    $yellowPixel = PixelSearch(132, 121, 189, 139, 0xFFdd44, 10); collect1
-;~ 	  While @error
-;~ 		 dropdown()
-;~ 		 sleep(200)
-;~ 		 Send($jumpbutton)
-;~ 		 sleep(50)
-;~ 		 attack()
-;~ 		 sleep(500)
-;~ 		 $yellowPixel = PixelSearch(132, 121, 189, 139, 0xFFdd44, 10); collect1
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~    EndIf
-
-
-;~ $yellowPixel = PixelSearch(162, 100, 189, 119, 0xFFdd44, 10); dropdownLeft modified
-;~ If Not @error Then
-;~    Send("{left down}")
-;~    $yellowPixel = PixelSearch(132, 121, 189, 139, 0xFFdd44, 10); collect1
-;~ 	  While @error
-;~ 		 dropdown()
-;~ 		 sleep(200)
-;~ 		 Send($jumpbutton)
-;~ 		 sleep(50)
-;~ 		 attack()
-;~ 		 sleep(500)
-;~ 		 $yellowPixel = PixelSearch(132, 121, 189, 139, 0xFFdd44, 10); collect1
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(132, 121, 189, 139, 0xFFdd44, 10); collect1
-;~ If Not @error Then
-;~    Send("{left down}")
-;~    doublejumpH()
-;~    doublejump()
-;~    $yellowPixel = PixelSearch(66, 128, 106, 154, 0xFFdd44, 10); collect2
-;~ 	  While @error
-;~ 		 sleep(100)
-;~ 		 $yellowPixel = PixelSearch(66, 128, 106, 154, 0xFFdd44, 10); collect2
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~    EndIf
-
-;~ $yellowPixel = PixelSearch(98, 126, 118, 139, 0xFFdd44, 10); collectmiddlePlat
-;~ If Not @error Then
-;~    Send("{left down}")
-;~    $yellowPixel = PixelSearch(66, 113, 96, 154, 0xFFdd44, 10); collect3
-;~ 	  While @error
-;~ 		 doublejumpH()
-;~ 		 attack()
-;~ 		 sleep(550)
-;~ 		 $yellowPixel = PixelSearch(66, 113, 96, 154, 0xFFdd44, 10); collect3
-;~ 	  WEnd
-;~ 	  Send("{left up}")
-;~ 	  jumpattackR()
-;~ 	  sleep(400)
-;~    EndIf
-;~ EndFunc
 
 
 ;	FUNCTIONS
@@ -810,11 +485,11 @@ Func featherfloat()
 EndFunc
 
 Func bloom()
-   While isOFFCD($bloomcol, $bloomrow)
+   If isOFFCD($bloomcol, $bloomrow)
 	  Send($bloombutton)
-	  sleep(200)
+	  sleep(350)
    WEnd
-   sleep(100)
+   sleep(300)
 EndFunc
 
 Func plummet()
@@ -838,9 +513,9 @@ Func infinity()
    sleep(200)
 EndFunc
 
-Func shardbreaker()
-   While isOFFCD($shardbreakercol, $shardbreakerrow)
-	  Send($shardbreakerbutton)
+Func lucid()
+   If isOFFCD($lucidCol, $lucidCol)
+	  Send($lucidButton)
 	  sleep(300)
    WEnd
    sleep(200)
@@ -855,17 +530,33 @@ Func ruin()
 EndFunc
 
 Func storm()
-   While isOFFCD($stormcol, $stormrow)
+   If isOFFCD($stormcol, $stormrow)
 	  Send($stormbutton)
 	  sleep(300)
-   WEnd
+   EndIf
    sleep(100)
 EndFunc
 
 Func legacy() ; buff
-   While isOFFCD($legacycol, $legacyrow)
+   If isOFFCD($legacycol, $legacyrow)
 	  Send($legacybutton)
 	  sleep(300)
+   EndIf
+   sleep(200)
+EndFunc
+
+Func divine()
+   While isOFFCD($divineCol, $divineRow)
+      Send($divinewrathButton)
+      sleep(200)
+   WEnd
+   sleep(200)
+EndFunc
+
+Func grandis()
+   While isOffCD($grandisCol, $grandisRow)
+      Send($grandisButton)
+      sleep(200)
    WEnd
    sleep(200)
 EndFunc
