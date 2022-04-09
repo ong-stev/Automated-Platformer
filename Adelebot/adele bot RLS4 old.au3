@@ -94,7 +94,7 @@ Dim $huntingdecreeButton = "a"
 ;$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
 ;$yellowPixel = PixelSearch(130, 68, 178, 109, 0xFFdd44, 10); rightBound
 ;$yellowPixel = PixelSearch(96, 68, 188, 109, 0xFFdd44, 10); middleCol
-;$yellowPixel = PixelSearch(11, 63, 36, 109, 0xFFdd44, 10); leftNull
+;$yellowPixel = PixelSearch(11, 63, 60, 109, 0xFFdd44, 10); leftNull
 
 
 
