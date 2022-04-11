@@ -90,11 +90,11 @@ Dim $huntingdecreeButton = "a"
 ;$yellowPixel = PixelSearch(130, 88, 180, 89, 0xFFdd44, 10); rightBot
 ;$yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
 ;
-;$yellowPixel = PixelSearch(12, 68, 67, 109, 0xFFdd44, 10); leftBound
+;$yellowPixel = PixelSearch(12, 68, 55, 109, 0xFFdd44, 10); leftBound
 ;$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
 ;$yellowPixel = PixelSearch(130, 68, 178, 109, 0xFFdd44, 10); rightBound
 ;$yellowPixel = PixelSearch(96, 68, 188, 109, 0xFFdd44, 10); middleCol
-;$yellowPixel = PixelSearch(11, 63, 77, 109, 0xFFdd44, 10); leftNull
+;$yellowPixel = PixelSearch(11, 63, 66, 109, 0xFFdd44, 10); leftNull
 
 
 
@@ -146,19 +146,19 @@ While TimerDiff($totemTimer) < 60000
 $yellowPixel = PixelSearch(22, 98, 170, 109, 0xFFdd44, 10); bottom
 If Not @error Then
 	Send("{left down}")
-	$yellowPixel = PixelSearch(12, 68, 67, 109, 0xFFdd44, 10); leftBound
+	$yellowPixel = PixelSearch(12, 68, 55, 109, 0xFFdd44, 10); leftBound
 		While @error
 	    	doublejumpH()
 			attack()
 			huntingdecree()
 			sleep(550)
-			$yellowPixel = PixelSearch(12, 68, 67, 109, 0xFFdd44, 10); leftBound
+			$yellowPixel = PixelSearch(12, 68, 55, 109, 0xFFdd44, 10); leftBound
 		WEnd
 	  	Send("{left up}")
    EndIf
 
 
-$yellowPixel = PixelSearch(11, 63, 36, 109, 0xFFdd44, 10); leftNull
+$yellowPixel = PixelSearch(11, 63, 66, 109, 0xFFdd44, 10); leftNull
 If Not @error Then
 	doublejump()
 EndIf
