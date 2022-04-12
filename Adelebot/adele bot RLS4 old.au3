@@ -158,9 +158,10 @@ If Not @error Then
    EndIf
 
 
-$yellowPixel = PixelSearch(11, 63, 66, 109, 0xFFdd44, 10); leftNull
+$yellowPixel = PixelSearch(11, 63, 38, 109, 0xFFdd44, 10); leftNull
 If Not @error Then
 	doublejump()
+	sleep(200)
 EndIf
 
 $yellowPixel = PixelSearch(22, 88, 77, 109, 0xFFdd44, 10); leftBot
