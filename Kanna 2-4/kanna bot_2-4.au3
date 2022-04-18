@@ -297,6 +297,7 @@ Func twoFourCombo()
             teleport("left")
             sleep(200)
             lucid()
+            sleep(600)
             EndIf
          EndIf
 
