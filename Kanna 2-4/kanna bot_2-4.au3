@@ -455,6 +455,7 @@ Func twoFourCollect()
       While @error
          sleep(100)
          WEnd
+         $yellowPixel = PixelSearch(94, 138, 106, 157, 0xFFdd44, 10); midPlatBound
          Send("{right up}")
       EndIf
 
