@@ -68,7 +68,7 @@ $yellowPixel = PixelSearch(73, 138, 108, 147, 0xFFdd44, 10); midPlat
 $yellowPixel = PixelSearch(33, 149, 143, 156, 0xFFdd44, 10); groundPlat
 $yellowPixel = PixelSearch(110, 125, 117, 135, 0xFFdd44, 10); defaultPostion
 $yellowPixel = PixelSearch(110, 114, 118, 123, 0xFFdd44, 10); defaultTop
-$yellowPixel = PixelSearch(123, 114, 143, 156, 0xFFdd44, 10); defaultRight
+$yellowPixel = PixelSearch(119, 114, 143, 156, 0xFFdd44, 10); defaultRight
 $yellowPixel = PixelSearch(110, 137, 117, 156, 0xFFdd44, 10); defaultBottom
 $yellowPixel = PixelSearch(74, 114, 104, 156, 0xFFdd44, 10); defaultLeft
 $yellowPixel = PixelSearch(110, 114, 117, 156, 0xFFdd44, 10); defaultAll
@@ -259,7 +259,7 @@ Func twoFourCombo()
 	   Send("{right up}")
    EndIf
 
-   $yellowPixel = PixelSearch(123, 114, 143, 156, 0xFFdd44, 10); defaultRight
+   $yellowPixel = PixelSearch(119, 114, 143, 156, 0xFFdd44, 10); defaultRight
    If NOT @error Then
 	   Send("{left down}")
 	   $yellowPixel = PixelSearch(110, 114, 117, 156, 0xFFdd44, 10); defaultAll
@@ -454,8 +454,8 @@ Func twoFourCollect()
       $yellowPixel = PixelSearch(94, 138, 106, 157, 0xFFdd44, 10); midPlatBound
       While @error
          sleep(100)
-         WEnd
          $yellowPixel = PixelSearch(94, 138, 106, 157, 0xFFdd44, 10); midPlatBound
+         WEnd
          Send("{right up}")
       EndIf
 
