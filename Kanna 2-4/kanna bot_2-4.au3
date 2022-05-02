@@ -83,7 +83,7 @@ $yellowPixel = PixelSearch(33, 114, 124, 156, 0xFFdd44, 10); leftBound
 $yellowPixel = PixelSearch(61, 81, 77, 95, 0xFFdd44, 10); topLeftBound
 $yellowPixel = PixelSearch(103, 81, 137, 95, 0xFFdd44, 10); leftOfRope
 $yellowPixel = PixelSearch(94, 138, 106, 157, 0xFFdd44, 10); midPlatBound
-$yellowPixel = PixelSearch(126, 137, 143, 157, 0xFFdd44, 10); rightBound
+$yellowPixel = PixelSearch(128, 137, 143, 157, 0xFFdd44, 10); rightBound
 
 #comments-end
 
@@ -154,10 +154,10 @@ Func twoFourSetup()
    $yellowPixel = PixelSearch(33, 114, 124, 156, 0xFFdd44, 10); leftBound
    If NOT @error Then
 	  Send("{right down}")
-	   $yellowPixel = PixelSearch(126, 137, 143, 157, 0xFFdd44, 10); rightBound
+	   $yellowPixel = PixelSearch(128, 137, 143, 157, 0xFFdd44, 10); rightBound
 	   While @error
 		   sleep(100)
-		   $yellowPixel = PixelSearch(126, 137, 143, 157, 0xFFdd44, 10); rightBound
+		   $yellowPixel = PixelSearch(128, 137, 143, 157, 0xFFdd44, 10); rightBound
 	   WEnd
 	   Send("{right up}")
    EndIf
