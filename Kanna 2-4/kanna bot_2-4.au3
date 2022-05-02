@@ -79,10 +79,11 @@ $yellowPixel = PixelSearch(74, 148, 104, 156, 0xFFdd44, 10); midPlatBottom
 $yellowPixel = PixelSearch(99, 114, 143, 135, 0xFFdd44, 10); rightAll
 $yellowPixel = PixelSearch(61, 81, 95, 95, 0xFFdd44, 10); topLeft
 $yellowPixel = PixelSearch(111, 81, 143, 95, 0xFFdd44, 10); topRight
-$yellowPixel = PixelSearch(33, 114, 108, 156, 0xFFdd44, 10); leftBound
+$yellowPixel = PixelSearch(33, 114, 124, 156, 0xFFdd44, 10); leftBound
 $yellowPixel = PixelSearch(61, 81, 77, 95, 0xFFdd44, 10); topLeftBound
 $yellowPixel = PixelSearch(103, 81, 137, 95, 0xFFdd44, 10); leftOfRope
 $yellowPixel = PixelSearch(94, 138, 106, 157, 0xFFdd44, 10); midPlatBound
+$yellowPixel = PixelSearch(126, 137, 143, 157, 0xFFdd44, 10); rightBound
 
 #comments-end
 
@@ -140,22 +141,23 @@ Func twoFourSetup()
       sleep(200)
    EndIf
 
-   $yellowPixel = PixelSearch(33, 114, 108, 156, 0xFFdd44, 10); leftBound
+   $yellowPixel = PixelSearch(33, 114, 124, 156, 0xFFdd44, 10); leftBound
    If NOT @error Then
 	   moveleft(25)
 	   yaksha()
 	   Global $yakshaTimer = TimerInit()
    EndIf
 
-   $yellowPixel = PixelSearch(33, 114, 108, 156, 0xFFdd44, 10); leftBound
+   teleport("right")
+   sleep(200)
+
+   $yellowPixel = PixelSearch(33, 114, 124, 156, 0xFFdd44, 10); leftBound
    If NOT @error Then
 	  Send("{right down}")
-	   $yellowPixel = PixelSearch(110, 137, 143, 156, 0xFFdd44, 10); groundRight
+	   $yellowPixel = PixelSearch(126, 137, 143, 157, 0xFFdd44, 10); rightBound
 	   While @error
-		   teleport("right")
-		   sleep(200)
-		   attack()
-		   $yellowPixel = PixelSearch(110, 137, 143, 156, 0xFFdd44, 10); groundRight
+		   sleep(100)
+		   $yellowPixel = PixelSearch(126, 137, 143, 157, 0xFFdd44, 10); rightBound
 	   WEnd
 	   Send("{right up}")
    EndIf
