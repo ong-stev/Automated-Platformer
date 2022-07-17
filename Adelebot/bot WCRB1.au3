@@ -161,9 +161,6 @@ If Not @error Then
 $yellowPixel = PixelSearch(68, 103, 87, 117, 0xFFdd44, 10); botPlatLeft
 If Not @error Then
    Send("{right down}")
-		upjumpR()
-		sleep(200)
-		EndIf
 		$yellowPixel = PixelSearch(74, 72, 177, 100, 0xFFdd44, 10); topBound
 			While @error
 			upJumpR()
@@ -222,6 +219,8 @@ EndIf
    	If isOFFCD($infinitycol, $infinityrow) Then
 		infinity()
 		sleep(500)
+		Send($petFood)
+		Send($petFood)
    	EndIf
 
 ;~ $yellowPixel = PixelSearch(130, 68, 170, 86, 0xFFdd44, 10); rightTop
