@@ -165,7 +165,7 @@ Func twoFourSetup()
    $yellowPixel = PixelSearch(110, 137, 143, 156, 0xFFdd44, 10); groundRight
    If NOT @error Then
       teleport("up")
-      sleep(200)  
+      sleep(200)
    EndIf
 
    $yellowPixel = PixelSearch(106, 125, 143, 135, 0xFFdd44, 10); rightPlat2
@@ -232,7 +232,7 @@ Func twoFourSetup()
             WEnd
             Send("{left up}")
             EndIf
-   
+
    $yellowPixel = PixelSearch(103, 81, 137, 95, 0xFFdd44, 10); leftOfRope
    If NOT @error Then
       $yellowPixel = PixelSearch(99, 114, 143, 135, 0xFFdd44, 10); rightAll
@@ -369,7 +369,7 @@ Func twoFourCombo()
             WEnd
             Send("{left up}")
             EndIf
-   
+
    $yellowPixel = PixelSearch(103, 81, 137, 95, 0xFFdd44, 10); leftOfRope
    If NOT @error Then
       $yellowPixel = PixelSearch(99, 114, 143, 135, 0xFFdd44, 10); rightAll
@@ -435,7 +435,7 @@ Func twoFourCollect()
       teleport("up")
       sleep(200)
       EndIf
-   
+
    $yellowPixel = PixelSearch(33, 123, 68, 141, 0xFFdd44, 10); groundLeftUp
    If Not @error Then
       Send("{right down}")
