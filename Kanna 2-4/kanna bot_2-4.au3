@@ -442,8 +442,6 @@ Func twoFourCollect()
       $yellowPixel = PixelSearch(73, 138, 108, 147, 0xFFdd44, 10); midPlat
       While @error
          teleport("right")
-         sleep(200)
-         attack()
          $yellowPixel = PixelSearch(73, 138, 108, 147, 0xFFdd44, 10); midPlat
          WEnd
          Send("{right up}")
