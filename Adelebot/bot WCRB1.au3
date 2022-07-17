@@ -93,6 +93,7 @@ Dim $petFood = "{F7}"
 ;$yellowPixel = PixelSearch(148, 86, 184, 117, 0xFFdd44, 10); botMidPlatRight
 ;$yellowPixel = PixelSearch(87, 72, 154, 84, 0xFFdd44, 10); dropDown
 ;$yellowPixel = PixelSearch(74, 72, 177, 100, 0xFFdd44, 10); topBound
+;$yellowPixel = PixelSearch(108, 86, 146, 117, 0xFFdd44, 10); midBound
 
 
 
@@ -179,28 +180,28 @@ EndIf
 $yellowPixel = PixelSearch(74, 86, 106, 99, 0xFFdd44, 10); midPlatLeft
 If Not @error Then
    Send("{right down}")
-   $yellowPixel = PixelSearch(108, 86, 146, 99, 0xFFdd44, 10); midPlatMid
+   $yellowPixel = PixelSearch(108, 86, 146, 117, 0xFFdd44, 10); midBound
 	  While @error
 	     doublejumpH()
 		 attack()
 		 sleep(550)
-		 $yellowPixel = PixelSearch(108, 86, 146, 99, 0xFFdd44, 10); midPlatMid
+		 $yellowPixel = PixelSearch(108, 86, 146, 117, 0xFFdd44, 10); midBound
 	  WEnd
 	  Send("{right up}")
 EndIf
 
-;~ $yellowPixel = PixelSearch(79, 88, 128, 109, 0xFFdd44, 10); midBot
-;~ If Not @error Then
-;~    Send("{right down}")
-;~    $yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
-;~ 		While @error
-;~ 		upJumpR()
-;~ 		attack()
-;~ 		sleep(350)
-;~ 		$yellowPixel = PixelSearch(11, 63, 182, 83, 0xFFdd44, 10); topBound
-;~ 	WEnd
-;~ 	Send("{right up}")
-;~ EndIf
+$yellowPixel = PixelSearch(103, 103, 136, 117, 0xFFdd44, 10); botPlatMid
+If Not @error Then
+   Send("{right down}")
+   $yellowPixel = PixelSearch(74, 72, 177, 100, 0xFFdd44, 10); topBound
+		While @error
+		upJumpR()
+		attack()
+		sleep(350)
+		$yellowPixel = PixelSearch(74, 72, 177, 100, 0xFFdd44, 10); topBound
+	WEnd
+	Send("{right up}")
+EndIf
 
 $yellowPixel = PixelSearch(108, 86, 146, 99, 0xFFdd44, 10); midPlatMid
 If Not @error Then
