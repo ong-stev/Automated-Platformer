@@ -142,7 +142,7 @@ Func WCRB1Setup()
 EndFunc
 
 Func WCRB1Combo()
-While TimerDiff($totemTimer) < 60000
+While TimerDiff($totemTimer) < 30000
 $yellowPixel = PixelSearch(74, 103, 184, 117, 0xFFdd44, 10); botPlat
 If Not @error Then
 	Send("{left down}")
@@ -166,7 +166,7 @@ If Not @error Then
 			While @error
 			upJumpR()
 			attack()
-			sleep(350)
+			sleep(450)
 			$yellowPixel = PixelSearch(74, 72, 177, 100, 0xFFdd44, 10); topBound
 		WEnd
 		Send("{right up}")
