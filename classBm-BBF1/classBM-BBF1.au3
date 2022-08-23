@@ -105,12 +105,12 @@ Func BBF1Setup()
 
    $yellowPixel = PixelSearch(22, 93, 72, 102, 0xFFdd44, 10); botLeftPlat
    If NOT @error Then
-      Send($jumpbutton)
-      Sleep(200)
       $yellowPixel = PixelSearch(27, 68, 77, 77, 0xFFdd44, 10); topLeftPlat
       While @error
+		 Send($jumpbutton)
+		 Sleep(200)
          teleport("up")
-         Sleep(200)
+         Sleep(300)
          $yellowPixel = PixelSearch(27, 68, 77, 77, 0xFFdd44, 10); topLeftPlat
       WEnd
    EndIf
@@ -198,12 +198,12 @@ Func BBF1Combo()
 
    $yellowPixel = PixelSearch(107, 93, 156, 102, 0xFFdd44, 10); botRightPlat
    If NOT @error Then
-      Send($jumpbutton)
-      Sleep(200)
       $yellowPixel = PixelSearch(102, 68, 152, 77, 0xFFdd44, 10); topRightPlat
       While @error
+		 Send($jumpbutton)
+		 Sleep(200)
          teleport("up")
-         Sleep(200)
+         Sleep(300)
          $yellowPixel = PixelSearch(102, 68, 152, 77, 0xFFdd44, 10); topRightPlat
       WEnd
    EndIf
@@ -241,8 +241,8 @@ Func BBF1Combo()
    If NOT @error Then
       grimHarvest()
       sleep(200)
-   EndIf  
-   
+   EndIf
+
    $yellowPixel = PixelSearch(107, 93, 156, 102, 0xFFdd44, 10); botRightPlat
    If Not @error Then
 	Send("{left down}")
