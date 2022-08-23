@@ -28,7 +28,7 @@ Dim $nightShadeButton = "r"
 
 
 ;   MINIMAP BOXES
-;$yellowPixel = PixelSearch(9, 89, 37, 108, 0xFFdd44, 10); left
+;$yellowPixel = PixelSearch(9, 89, 57, 108, 0xFFdd44, 10); left
 ;$yellowPixel = PixelSearch(205, 89, 233, 108, 0xFFdd44, 10); right
 ;$yellowPixel = PixelSearch(9, 95, 233, 107, 0xFFdd44, 10); botPlat
 
@@ -72,20 +72,24 @@ If Not @error Then
 $yellowPixel = PixelSearch(9, 95, 233, 107, 0xFFdd44, 10); botPlat
 If Not @error Then
 	Send("{left down}")
-	$yellowPixel = PixelSearch(9, 89, 37, 108, 0xFFdd44, 10); left
+	$yellowPixel = PixelSearch(9, 89, 57, 108, 0xFFdd44, 10); left
 		While @error
 	      doublejumpH()
 		   attack()
 		   sleep(550)
-			$yellowPixel = PixelSearch(9, 89, 37, 108, 0xFFdd44, 10); left
+			$yellowPixel = PixelSearch(9, 89, 57, 108, 0xFFdd44, 10); left
 		WEnd
 	  	Send("{left up}")
 
 	If isOFFCD($eyeShockcol, $eyeShockrow) Then
 		eyeShock()
-	  	sleep(300)
+	  	sleep(200)
     EndIf
 
+	If isOFFCD($nightShadecol, $nightShaderow) Then
+		nightShade()
+	  	sleep(300)
+    EndIf
 EndIf
 
 
