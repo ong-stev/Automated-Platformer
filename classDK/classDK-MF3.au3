@@ -72,7 +72,9 @@ If Not @error Then
 			$yellowPixel = PixelSearch(182, 70, 214, 105, 0xFFdd44, 10); right
 		WEnd
 	  	Send("{right up}")
-   EndIf
+	 EndIf
+
+	 moveleft(15)
 
 $yellowPixel = PixelSearch(182, 86, 214, 83, 0xFFdd44, 10); rightTop
 If Not @error Then
@@ -81,10 +83,6 @@ If Not @error Then
 	  While @error
 		dropdown()
 		sleep(200)
-		Send($jumpbutton)
-		sleep(50)
-		attack()
-		sleep(500)
 		$yellowPixel = PixelSearch(9, 88, 214, 105, 0xFFdd44, 10); botPlat
 	WEnd
 	Send("{left up}")
@@ -121,14 +119,12 @@ If Not @error Then
 	  While @error
 		dropdown()
 		sleep(200)
-		Send($jumpbutton)
-		sleep(50)
-		attack()
-		sleep(500)
 		$yellowPixel = PixelSearch(9, 88, 214, 105, 0xFFdd44, 10); botPlat
 	WEnd
 	Send("{right up}")
-	EndIf
+ EndIf
+
+   moveright(15)
 
 	If isOFFCD($spearOfDarknesscol, $spearOfDarknessrow) Then
 		spearOfDarkness()
@@ -136,6 +132,8 @@ If Not @error Then
     EndIf
 
 	If isOFFCD($eyeShockcol, $eyeShockrow) Then
+	   Send($jumpbutton)
+	   sleep(100)
 		eyeShock()
 	  	sleep(200)
     EndIf
