@@ -40,6 +40,7 @@ Dim $cryValhallaButton = "3"
 Dim $burningSoulbladeButton = "4"
 Dim $holySymbolButton = ";"
 Dim $sharpEyesButton = "."
+Dim $totemButton = "'"
 
 
 ;   MINIMAP BOXES
@@ -69,10 +70,39 @@ While 1
 
 
 Func MF3()
+   totemBuff()
 	MF3Combo()
 EndFunc
 
+Func totemBuff()
+   If isOFFCD($holySymbolcol, $holySymbolrow) Then
+	  holySymbol()
+	  sleep(300)
+   EndIf
+
+   If isOFFCD($sharpEyescol, $sharpEyesrow) Then
+	  sharpEyes()
+	  sleep(300)
+   EndIf
+   
+   If isOFFCD($cryValhallacol, $cryValhallarow) Then
+	  cryValhalla()
+	  sleep(300)
+   EndIf
+
+   If isOFFCD($burningSoulbladecol, $burningSoulbladerow) Then
+	  burningSoulblade()
+	  sleep(300)
+   EndIf
+
+   totem()
+   Global $totemTimer = TimerInit()
+   sleep(300)
+
+EndFunc
+
 Func MF3Combo()
+While TimerDiff($totemTimer) < 30000
 $yellowPixel = PixelSearch(9, 88, 214, 105, 0xFFdd44, 10); botPlat
 If Not @error Then
 	Send("{right down}")
@@ -100,14 +130,9 @@ If Not @error Then
 	Send("{left up}")
 	EndIf
 
-	If isOFFCD($spearOfDarknesscol, $spearOfDarknessrow) Then
-		spearOfDarkness()
-	  	sleep(200)
-    EndIf
 
-
-	If isOFFCD($nightShadecol, $nightShaderow) Then
-		nightShade()
+	If isOFFCD($risingRagecol, $risingRagerow) Then
+		risingRage()
 	  	sleep(300)
     EndIf
 
@@ -138,20 +163,13 @@ If Not @error Then
 
    moveright(15)
 
-	If isOFFCD($spearOfDarknesscol, $spearOfDarknessrow) Then
-		spearOfDarkness()
-	  	sleep(200)
-    EndIf
-
-	If isOFFCD($eyeShockcol, $eyeShockrow) Then
-	   Send($jumpbutton)
-	   sleep(100)
-		eyeShock()
+	If isOFFCD($worldReavercol, $worldReaverrow) Then
+		worldReaver()
 	  	sleep(200)
     EndIf
 
 
-
+WEnd
 EndFunc
 
 
@@ -297,6 +315,14 @@ Func sharpEyes()
    WEnd
    sleep(100)
 EndFunc
+
+Func totem()
+   Send($totembutton)
+   sleep(50)
+   Send($totembutton)
+   sleep(50)
+EndFunc
+
 
 
 
