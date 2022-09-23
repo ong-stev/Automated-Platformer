@@ -56,6 +56,7 @@ Dim $tenguButton = "v"
 Dim $onilordButton = "6"
 Dim $arachnidButton = "3"
 Dim $lucidButton = "g"
+Dim $totemButton = "'"
 
 ; MINIMAP BOXES
 
@@ -144,6 +145,8 @@ Func twoFourSetup()
    $yellowPixel = PixelSearch(33, 114, 124, 156, 0xFFdd44, 10); leftBound
    If NOT @error Then
 	   moveleft(25)
+      totem()
+      sleep(100)
 	   yaksha()
 	   Global $yakshaTimer = TimerInit()
    EndIf
@@ -584,6 +587,12 @@ EndFunc
 
 Func lucid()
    Send($lucidButton)
+   sleep(200)
+EndFunc
+
+Func totem()
+   Send($totemButton)
+   Send($totemButton)
    sleep(200)
 EndFunc
 
