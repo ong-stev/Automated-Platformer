@@ -31,12 +31,12 @@ Dim $eyeShockButton = "q"
 Dim $nightShadeButton = "r"
 Dim $spearOfDarknessButton = "z"
 Dim $radiantEvilButton = "v"
-
+Dim $totemButton = "'"
 
 ;   MINIMAP BOXES
 ;$yellowPixel = PixelSearch(21, 72, 68, 100, 0xFFdd44, 10); left
 ;$yellowPixel = PixelSearch(114, 72, 150, 100, 0xFFdd44, 10); right
-;$yellowPixel = PixelSearch(22, 90, 150, 100, 0xFFdd44, 10); botPlat
+;$yellowPixel = PixelSearch(22, 72, 150, 100, 0xFFdd44, 10); botPlat
 
 
 
@@ -58,19 +58,27 @@ While 1
 
 
 Func Rev3()
+    totemSetup()
 	Rev3Combo()
+ EndFunc
+
+ Func totemSetup()
+	totem()
+	Global $totemTimer = TimerInit()
+	sleep(300)
 EndFunc
 
 Func Rev3Combo()
-$yellowPixel = PixelSearch(22, 90, 150, 100, 0xFFdd44, 10); botPlat
+While TimerDiff($totemTimer) < 30000
+$yellowPixel = PixelSearch(22, 72, 150, 100, 0xFFdd44, 10); botPlat
 If Not @error Then
 	Send("{right down}")
-	$yellowPixel = PixelSearch(134, 72, 150, 100, 0xFFdd44, 10); right
+	$yellowPixel = PixelSearch(114, 72, 150, 100, 0xFFdd44, 10); right
 		While @error
 	      doublejumpH()
 		   attack()
 		   sleep(550)
-			$yellowPixel = PixelSearch(134, 72, 150, 100, 0xFFdd44, 10); right
+			$yellowPixel = PixelSearch(114, 72, 150, 100, 0xFFdd44, 10); right
 		WEnd
 	  	Send("{right up}")
    EndIf
@@ -91,17 +99,17 @@ If Not @error Then
 	  	sleep(300)
     EndIf
 
-    
 
-$yellowPixel = PixelSearch(22, 90, 150, 100, 0xFFdd44, 10); botPlat
+
+$yellowPixel = PixelSearch(22, 72, 150, 100, 0xFFdd44, 10); botPlat
 If Not @error Then
 	Send("{left down}")
-	$yellowPixel = PixelSearch(21, 72, 48, 100, 0xFFdd44, 10); left
+	$yellowPixel = PixelSearch(21, 72, 68, 100, 0xFFdd44, 10); left
 		While @error
 	      doublejumpH()
 		   attack()
 		   sleep(550)
-			$yellowPixel = PixelSearch(21, 72, 48, 100, 0xFFdd44, 10); left
+			$yellowPixel = PixelSearch(21, 72, 68, 100, 0xFFdd44, 10); left
 		WEnd
 	  	Send("{left up}")
    EndIf
@@ -121,7 +129,7 @@ If Not @error Then
 	  	sleep(300)
     EndIf
 
-
+WEnd
 EndFunc
 
 
@@ -217,13 +225,23 @@ Func eyeShock()
 	  Send($eyeshockbutton)
 	  sleep(200)
    WEnd
+   sleep(100)
 EndFunc
+
+Func totem()
+   Send($totembutton)
+   sleep(50)
+   Send($totembutton)
+   sleep(50)
+EndFunc
+
 
 Func nightShade()
    While isOFFCD($nightShadecol,$nightShaderow)
 	  Send($nightShadebutton)
 	  sleep(300)
    WEnd
+   sleep(100)
 EndFunc
 
 Func spearOfDarkness()
@@ -231,6 +249,7 @@ Func spearOfDarkness()
 	  Send($spearofDarknessbutton)
 	  sleep(300)
    WEnd
+   sleep(100)
 EndFunc
 
 Func radiantEvil()
@@ -238,6 +257,7 @@ Func radiantEvil()
 	  Send($radiantEvilbutton)
 	  sleep(300)
    WEnd
+   sleep(100)
 EndFunc
 
 
