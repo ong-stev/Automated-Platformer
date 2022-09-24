@@ -49,7 +49,7 @@ Dim $teleportButton = "d"
 Dim $jumpButton = "w"
 Dim $ninetailsButton = "b"
 Dim $vanquisherButton = "e"
-Dim $maplewarriorButton = "'"
+Dim $maplewarriorButton = ";"
 Dim $balanceButton = "z"
 Dim $ccButton = ","
 Dim $tenguButton = "v"
@@ -144,9 +144,9 @@ Func twoFourSetup()
 
    $yellowPixel = PixelSearch(33, 114, 124, 156, 0xFFdd44, 10); leftBound
    If NOT @error Then
-	   moveleft(25)
+	  moveleft(25)
+	  sleep(100)
       totem()
-      sleep(100)
 	   yaksha()
 	   Global $yakshaTimer = TimerInit()
    EndIf
