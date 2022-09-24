@@ -75,6 +75,10 @@ Func MF3()
 EndFunc
 
 Func totemBuff()
+   totem()
+   Global $totemTimer = TimerInit()
+   sleep(300)
+
    If isOFFCD($holySymbolcol, $holySymbolrow) Then
 	  holySymbol()
 	  sleep(300)
@@ -84,7 +88,7 @@ Func totemBuff()
 	  sharpEyes()
 	  sleep(300)
    EndIf
-   
+
    If isOFFCD($cryValhallacol, $cryValhallarow) Then
 	  cryValhalla()
 	  sleep(300)
@@ -94,10 +98,6 @@ Func totemBuff()
 	  burningSoulblade()
 	  sleep(300)
    EndIf
-
-   totem()
-   Global $totemTimer = TimerInit()
-   sleep(300)
 
 EndFunc
 
@@ -147,7 +147,9 @@ If Not @error Then
 			$yellowPixel = PixelSearch(9, 70, 41, 105, 0xFFdd44, 10); left
 		WEnd
 	  	Send("{left up}")
-   EndIf
+	 EndIf
+
+	 moveright(15)
 
 $yellowPixel = PixelSearch(9, 76, 41, 83, 0xFFdd44, 10); leftTop
 If Not @error Then
@@ -164,6 +166,7 @@ If Not @error Then
    moveright(15)
 
 	If isOFFCD($worldReavercol, $worldReaverrow) Then
+	  Send($jumpbutton)
 		worldReaver()
 	  	sleep(200)
     EndIf
