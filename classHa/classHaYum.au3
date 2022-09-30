@@ -20,7 +20,7 @@ Dim $falconsHonorCol = 1
 Dim $instantSliceRow = 1
 Dim $instantSliceCol = 2
 Dim $summonRow = 1
-Dim $summonCol = 5
+Dim $summonCol = 3
 Dim $sengokuRow = 0
 Dim $sengokuCol = 3
 
@@ -31,7 +31,8 @@ Dim $falconsHonorButton = "z"
 Dim $instantSliceButton = "x"
 Dim $summonButton = "{PGUP}"
 Dim $sengokuButton = "4"
-Dim $phantomBladeButton = "r"
+Dim $phantomBladeButton = "f"
+Dim $jumpButton = "w"
 
 
 Global $totemTimer
@@ -58,7 +59,7 @@ EndFunc
 
 Func combo()
 While TimerDiff($totemTimer) < 30000
-   
+
 	If isOFFCD($falconsHonorcol, $falconsHonorrow) Then
 		falconsHonor()
 	  	sleep(600)
@@ -68,19 +69,23 @@ While TimerDiff($totemTimer) < 30000
 		instantSlice()
 	  	sleep(500)
     EndIf
-   
+
    Sleep(4000)
-
-   moveRight(25)
-   phantomBlade()
-   Sleep(400)
-   moveLeft(25)
-   phantomBlade()
-
 	If isOFFCD($summoncol, $summonrow) Then
 		summon()
 	  	sleep(300)
     EndIf
+   moveRight(75)
+   Send($jumpbutton)
+   sleep(150)
+   phantomBlade()
+   Sleep(400)
+   moveLeft(75)
+   Send($jumpbutton)
+   sleep(150)
+   phantomBlade()
+
+
 
 	If isOFFCD($sengokucol, $sengokurow) Then
 		sengoku()
