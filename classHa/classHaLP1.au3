@@ -79,7 +79,7 @@ Func totemtimer()
 EndFunc
 
 Func combo()
-While TimerDiff($totemTimer) < 60000
+While TimerDiff($totemTimer) < 80000
 
 	If isOFFCD($falconsHonorcol, $falconsHonorrow) Then
 		falconsHonor()
@@ -98,12 +98,12 @@ While TimerDiff($totemTimer) < 60000
     EndIf
    moveRight(75)
    Send($jumpbutton)
-   sleep(150)
+   sleep(100)
    phantomBlade()
-   Sleep(400)
+   Sleep(300)
    moveLeft(75)
    Send($jumpbutton)
-   sleep(150)
+   sleep(100)
    phantomBlade()
 
 
@@ -128,9 +128,6 @@ Func collectL()
       sleep(800)
    EndIf
 
-   phantomBlade()
-   Sleep(200)
-
    $yellowPixel = PixelSearch(84, 67, 166, 82, 0xFFdd44, 10); topPlat
    If NOT @error Then
 	   Send("{left down}")
@@ -140,12 +137,12 @@ Func collectL()
          $yellowPixel = PixelSearch(84, 67, 108, 82, 0xFFdd44, 10); dashLeft
          WEnd
          Send("{left up}")
-         EndIf   
+         EndIf
 
    $yellowPixel = PixelSearch(84, 67, 108, 82, 0xFFdd44, 10); dashLeft
    If NOT @error Then
       Send($dashButton)
-      sleep(600)
+	  sleep(2000)
    EndIf
 
    $yellowPixel = PixelSearch(51, 76, 71, 83, 0xFFdd44, 10); nullLeft
@@ -162,15 +159,6 @@ Func collectL()
          $yellowPixel = PixelSearch(51, 96, 77, 101, 0xFFdd44, 10); leftPlat2
          WEnd
          Send("{left up}")
-	If isOFFCD($falconsHonorcol, $falconsHonorrow) Then
-		falconsHonor()
-	  	sleep(300)
-    EndIf
-
- 	If isOFFCD($instantSlicecol, $instantSlicerow) Then
-		instantSlice()
-	  	sleep(300)
-    EndIf
     Sleep(200)
       EndIf
 
@@ -184,18 +172,36 @@ Func collectL()
          WEnd
          Send("{right up}")
          Sleep(600)
-      EndIf    
+      EndIf
+
+	If isOFFCD($falconsHonorcol, $falconsHonorrow) Then
+		falconsHonor()
+	  	sleep(300)
+    EndIf
+
+ 	If isOFFCD($instantSlicecol, $instantSlicerow) Then
+		instantSlice()
+	  	sleep(300)
+    EndIf
 
    $yellowPixel = PixelSearch(74, 95, 176, 106, 0xFFdd44, 10); botPlat
    If NOT @error Then
 	   Send("{right down}")
+	   doublejumpH()
       $yellowPixel = PixelSearch(114, 95, 139, 106, 0xFFdd44, 10); reset
       While @error
          sleep(100)
          $yellowPixel = PixelSearch(114, 95, 139, 106, 0xFFdd44, 10); reset
          WEnd
          Send("{right up}")
-      EndIf   
+      EndIf
+
+   moveRight(75)
+   Send($jumpbutton)
+   sleep(150)
+   phantomBlade()
+   Sleep(400)
+
 EndFunc
 
 Func collectR()
@@ -223,7 +229,7 @@ Func collectR()
    $yellowPixel = PixelSearch(143, 67, 166, 82, 0xFFdd44, 10); dashRight
    If NOT @error Then
       Send($dashButton)
-      sleep(600)
+      sleep(2000)
    EndIf
 
    $yellowPixel = PixelSearch(178, 75, 198, 83, 0xFFdd44, 10); nullRight
@@ -246,7 +252,6 @@ Func collectR()
    $yellowPixel = PixelSearch(179, 96, 197, 101, 0xFFdd44, 10); rightPlat2
    If NOT @error Then
 	   Send("{left down}")
-      phantomBlade()
       $yellowPixel = PixelSearch(74, 95, 176, 106, 0xFFdd44, 10); botPlat
       While @error
          sleep(100)
@@ -254,18 +259,19 @@ Func collectR()
          WEnd
          Send("{left up}")
          Sleep(600)
-      EndIf    
+      EndIf
 
    $yellowPixel = PixelSearch(74, 95, 176, 106, 0xFFdd44, 10); botPlat
    If NOT @error Then
 	   Send("{left down}")
-      $yellowPixel = PixelSearch(114, 95, 139, 106, 0xFFdd44, 10); reset
+	   doublejumpH()
+      $yellowPixel = PixelSearch(114, 95, 130, 106, 0xFFdd44, 10); reset
       While @error
          sleep(100)
-         $yellowPixel = PixelSearch(114, 95, 139, 106, 0xFFdd44, 10); reset
+         $yellowPixel = PixelSearch(114, 95, 130, 106, 0xFFdd44, 10); reset
          WEnd
          Send("{left up}")
-      EndIf  
+      EndIf
 
 EndFunc
 
@@ -303,9 +309,9 @@ EndFunc
 
 Func doublejumpH()
    Send($jumpbutton)
-   sleep(100)
+   sleep(75)
    Send($jumpbutton)
-   sleep(100)
+   sleep(75)
    Send($jumpbutton)
 EndFunc
 
